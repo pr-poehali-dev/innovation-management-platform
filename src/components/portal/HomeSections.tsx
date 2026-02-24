@@ -25,9 +25,6 @@ export function HomeSection({ navigate }: { navigate: (s: Section) => void }) {
             Конкурсы, гранты, мероприятия и программы акселерации — всё в одном месте для студентов, учёных и бизнес-партнёров.
           </p>
           <div className="flex flex-wrap gap-3">
-            <button onClick={() => navigate("students")} className="bg-gold text-deep px-6 py-3 rounded-lg font-semibold hover:bg-gold/90 transition-colors flex items-center gap-2 text-sm">
-              <Icon name="GraduationCap" size={16} />Студентам
-            </button>
             <button onClick={() => navigate("calendar")} className="bg-white/15 border border-white/30 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/25 transition-colors flex items-center gap-2 text-sm">
               <Icon name="Calendar" size={16} />Календарь событий
             </button>
