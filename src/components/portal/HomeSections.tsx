@@ -60,13 +60,14 @@ export function HomeSection({ navigate }: { navigate: (s: Section) => void }) {
             { section: "victories" as Section, icon: "Trophy", title: "Победы", desc: "Наши достижения" },
             { section: "students" as Section, icon: "GraduationCap", title: "Студентам", desc: "Гранты, конкурсы, стипендии" },
             { section: "business" as Section, icon: "Briefcase", title: "Бизнес", desc: "Каталоги и бюллетени" },
-            { section: "science" as Section, icon: "FlaskConical", title: "Наука", desc: "Популяризация науки" },
+            { section: "science" as Section, icon: "FlaskConical", title: "Популяризация науки", desc: "Популяризация науки" },
             { section: "team" as Section, icon: "Users", title: "Команда", desc: "Руководство и сотрудники" },
             { section: "calendar" as Section, icon: "Calendar", title: "Календарь", desc: "События и дедлайны" },
+            { section: "links" as Section, icon: "Link", title: "Полезные ссылки", desc: "Ресурсы и платформы" },
             { section: "infographics" as Section, icon: "BarChart3", title: "Инфографика", desc: "Визуальные данные" },
             { section: "survey" as Section, icon: "ClipboardList", title: "Анкетирование", desc: "Опросы и формы" },
-            { section: "partners" as Section, icon: "Handshake", title: "Партнёры", desc: "Наши партнёры" },
             { section: "contacts" as Section, icon: "Phone", title: "Контакты", desc: "Как с нами связаться" },
+            { section: "partners" as Section, icon: "Handshake", title: "Наши партнёры", desc: "Партнёры и соратники" },
           ].map(card => (
             <button key={card.section} onClick={() => navigate(card.section)}
               className="bg-card border border-border rounded-xl p-4 text-left hover:border-primary/40 hover:shadow-md transition-all group hover-scale">
