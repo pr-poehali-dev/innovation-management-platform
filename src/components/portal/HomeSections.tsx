@@ -76,7 +76,7 @@ export function HomeSection({ navigate }: { navigate: (s: Section) => void }) {
               <div className="w-9 h-9 bg-teal-50 rounded-lg flex items-center justify-center mb-3 group-hover:bg-primary transition-colors">
                 <Icon name={card.icon} size={17} className="text-primary group-hover:text-white" />
               </div>
-              <div className="font-semibold text-sm text-deep">{card.title}</div>
+              <div className="font-semibold text-sm text-black">{card.title}</div>
               <div className="text-xs text-muted-foreground mt-0.5">{card.desc}</div>
             </button>
           ))}

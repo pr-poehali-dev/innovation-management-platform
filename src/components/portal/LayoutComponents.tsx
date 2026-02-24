@@ -75,10 +75,6 @@ export function Header({ section, isLoggedIn, mobileMenuOpen, setMobileMenuOpen,
         </nav>
 
         <div className="flex items-center gap-2">
-          <button onClick={() => navigate("calendar")}
-            className="hidden md:flex items-center gap-1.5 border border-white/30 text-white/80 hover:text-white hover:border-white/60 px-2.5 py-1.5 rounded text-xs transition-colors">
-            <Icon name="Calendar" size={13} />Календарь
-          </button>
           <button onClick={handleQuestion}
             className="hidden sm:flex items-center gap-1.5 bg-gold text-deep px-3 py-1.5 rounded text-xs font-semibold hover:bg-gold/90 transition-colors">
             <Icon name="MessageCircleQuestion" size={13} />Задать вопрос
