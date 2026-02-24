@@ -145,7 +145,7 @@ export function Footer({ navigate, handleQuestion }: FooterProps) {
           <div>
             <div className="font-semibold text-white text-sm mb-3">Контакты</div>
             <div className="space-y-2 text-xs">
-              <div className="flex items-center gap-2"><Icon name="Mail" size={12} />is.ryzhova@omgau.org</div>
+              <div className="flex items-center gap-2"><Icon name="Mail" size={12} />ov.kosenchuk@omgau.org</div>
               <div className="flex items-center gap-2"><Icon name="Phone" size={12} />+7 (3812) 65-10-88</div>
               <div className="flex items-center gap-2"><Icon name="Globe" size={12} />omgau.org</div>
             </div>

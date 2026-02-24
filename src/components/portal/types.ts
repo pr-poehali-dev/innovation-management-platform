@@ -36,7 +36,7 @@ export const GRANTS: GrantItem[] = [
 ];
 
 export const TEAM: TeamMember[] = [
-  { name: "Рыжова Ирина Сергеевна", role: "Начальник управления", email: "is.ryzhova@omgau.org", phone: "+7 (3812) 65-10-88", photo: "https://ui-avatars.com/api/?name=Рыжова+Ирина&background=1a6b5a&color=fff&size=128&bold=true", isHead: true },
+  { name: "Косенчук Оксана Владимировна", role: "Начальник управления", email: "ov.kosenchuk@omgau.org", phone: "+7 (3812) 65-10-88", photo: "https://ui-avatars.com/api/?name=Косенчук+Оксана&background=1a6b5a&color=fff&size=128&bold=true", isHead: true },
   { name: "Соколова Мария Петровна", role: "Специалист по грантам", email: "mp.sokolova@omgau.org", phone: "+7 (3812) 65-10-89", photo: "https://ui-avatars.com/api/?name=Соколова+Мария&background=2e8b6e&color=fff&size=128" },
   { name: "Петров Алексей Николаевич", role: "Специалист по предпринимательству", email: "an.petrov@omgau.org", phone: "+7 (3812) 65-10-90", photo: "https://ui-avatars.com/api/?name=Петров+Алексей&background=c49a2a&color=fff&size=128" },
   { name: "Кузнецова Елена Ивановна", role: "Координатор акселерационных программ", email: "ei.kuznetsova@omgau.org", photo: "https://ui-avatars.com/api/?name=Кузнецова+Елена&background=2e8b6e&color=fff&size=128" },

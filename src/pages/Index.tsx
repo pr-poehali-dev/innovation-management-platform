@@ -37,7 +37,7 @@ export default function Index() {
   const goHome = () => navigate("home");
 
   const handleLogin = () => {
-    if (loginForm.email === "is.ryzhova@omgau.org" && loginForm.password === "инновации2026") {
+    if (loginForm.email === "ov.kosenchuk@omgau.org" && loginForm.password === "инновации2026") {
       setIsLoggedIn(true); setLoginError(""); navigate("home");
     } else { setLoginError("Неверный email или пароль"); }
   };
