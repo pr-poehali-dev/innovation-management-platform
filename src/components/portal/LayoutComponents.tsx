@@ -51,7 +51,7 @@ export function Header({ section, isLoggedIn, mobileMenuOpen, setMobileMenuOpen,
   return (
     <header className="bg-teal-dark text-white shadow-lg sticky top-0 z-50">
       <div className="border-b border-white/10 py-1 px-4 md:px-8 flex items-center justify-between text-xs text-white/50">
-        <span>ФГБОУ ВО ОмГАУ им. П.А. Столыпина</span>
+        <span>ФГБОУ ВО Омский ГАУ</span>
         <span>omgau.org</span>
       </div>
       <div className="px-4 md:px-8 py-3 flex items-center justify-between gap-4">
@@ -132,7 +132,7 @@ export function Footer({ navigate, handleQuestion }: FooterProps) {
               <Icon name="Lightbulb" size={16} className="text-gold" />
               <span className="font-merriweather font-bold text-white text-sm">Управление инноваций</span>
             </div>
-            <p className="text-xs leading-relaxed">ФГБОУ ВО ОмГАУ им. П.А. Столыпина<br />644008, г. Омск, Институтская площадь, 1</p>
+            <p className="text-xs leading-relaxed">ФГБОУ ВО Омский ГАУ<br />644008, г. Омск, Институтская площадь, 1</p>
           </div>
           <div>
             <div className="font-semibold text-white text-sm mb-3">Разделы</div>

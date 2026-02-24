@@ -15,7 +15,7 @@ export function HomeSection({ navigate }: { navigate: (s: Section) => void }) {
         <div className="max-w-4xl mx-auto relative">
           <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur rounded-full px-4 py-1.5 text-xs mb-6">
             <Icon name="Lightbulb" size={12} className="text-gold" />
-            ФГБОУ ВО ОмГАУ им. П.А. Столыпина
+            ФГБОУ ВО Омский ГАУ
           </div>
           <h1 className="font-merriweather font-black text-3xl md:text-5xl leading-tight mb-4">
             Управление инноваций<br />
@@ -131,7 +131,7 @@ export function AboutSection({ goHome, goBack }: NavProps) {
       <NavButtons onHome={goHome} onBack={goBack} />
       <h1 className="font-merriweather font-bold text-3xl text-deep mb-8">О нас</h1>
       <div className="bg-gradient-to-r from-teal-50 to-white border border-teal-100 rounded-xl p-6 mb-8">
-        <p className="text-base text-foreground leading-relaxed">Управление инноваций и предпринимательства ФГБОУ ВО ОмГАУ им. П.А. Столыпина обеспечивает комплексное сопровождение инновационной деятельности университета, поддерживает молодых учёных, студентов-предпринимателей и развивает партнёрство с бизнес-сообществом.</p>
+        <p className="text-base text-foreground leading-relaxed">Управление инноваций и предпринимательства ФГБОУ ВО Омский ГАУ обеспечивает комплексное сопровождение инновационной деятельности университета, поддерживает молодых учёных, студентов-предпринимателей и развивает партнёрство с бизнес-сообществом.</p>
       </div>
       <div className="grid md:grid-cols-2 gap-6 mb-8">
         {[
