@@ -160,7 +160,7 @@ export function AboutSection({ goHome, goBack }: NavProps) {
         <div className="bg-teal-dark text-white px-5 py-3 font-semibold text-sm">Организационная структура</div>
         <div className="p-5 space-y-3">
           {[
-            { role: "Начальник управления", name: "Рыжова И.С.", email: "is.ryzhova@omgau.org", indent: false },
+            { role: "Начальник управления", name: "Косенчук О.В.", email: "ov.kosenchuk@omgau.org", indent: false },
             { role: "Отдел грантовой деятельности", name: "2 специалиста", email: "", indent: true },
             { role: "Отдел акселерации и стартапов", name: "1 специалист", email: "", indent: true },
             { role: "Отдел партнёрских программ", name: "1 менеджер", email: "", indent: true },
