@@ -75,10 +75,6 @@ export function Header({ section, isLoggedIn, mobileMenuOpen, setMobileMenuOpen,
         </nav>
 
         <div className="flex items-center gap-2">
-          <button onClick={handleQuestion}
-            className="hidden sm:flex items-center gap-1.5 bg-gold text-deep px-3 py-1.5 rounded text-xs font-semibold hover:bg-gold/90 transition-colors">
-            <Icon name="MessageCircleQuestion" size={13} />Задать вопрос
-          </button>
           {isLoggedIn ? (
             <button onClick={() => setIsLoggedIn(false)} className="flex items-center gap-1 text-white/60 hover:text-white text-xs transition-colors">
               <Icon name="LogOut" size={15} /><span className="hidden sm:inline">Выйти</span>
