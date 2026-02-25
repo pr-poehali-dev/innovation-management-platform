@@ -3,6 +3,7 @@ import { useState } from "react";
 // ─── Portal components ────────────────────────────────────────────────────────
 import { Section, EventType, GrantItem, GRANTS, VICTORIES, EVENTS } from "@/components/portal/types";
 import { Header, Footer, QuestionDialog } from "@/components/portal/LayoutComponents";
+import Icon from "@/components/ui/icon";
 import { HomeSection, AboutSection, NewsSection, VictoriesSection, CalendarSection } from "@/components/portal/HomeSections";
 import {
   StudentsSection, GrantDetailSection, BusinessSection, ScienceSection,
@@ -92,6 +93,13 @@ export default function Index() {
       />
       <main className="flex-1 animate-fade-in">{renderSection()}</main>
       <Footer navigate={navigate} handleQuestion={handleQuestion} />
+      <button
+        onClick={handleQuestion}
+        className="fixed bottom-6 right-6 z-40 flex items-center gap-2 bg-gold text-deep px-4 py-3 rounded-full shadow-lg hover:bg-gold/90 hover:scale-105 transition-all font-semibold text-sm"
+      >
+        <Icon name="MessageCircleQuestion" size={18} />
+        Задать вопрос
+      </button>
       <QuestionDialog
         questionOpen={questionOpen}
         questionText={questionText}
