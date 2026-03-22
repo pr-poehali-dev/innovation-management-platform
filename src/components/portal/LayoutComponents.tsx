@@ -51,7 +51,7 @@ export function Header({ section, isLoggedIn, mobileMenuOpen, setMobileMenuOpen,
   return (
     <header className="bg-teal-dark text-white shadow-lg sticky top-0 z-50">
       <div className="border-b border-white/10 py-1 px-4 md:px-8 flex items-center justify-between text-xs text-white/50">
-        <span>ФГБОУ ВО Омский ГАУ</span>
+        <span>УИиП</span>
         <a href="https://omgau.org" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors">ФГБОУ ВО Омский ГАУ</a>
       </div>
       <div className="px-4 md:px-8 py-3 flex items-center justify-between gap-4">
