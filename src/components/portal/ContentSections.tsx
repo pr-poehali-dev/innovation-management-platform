@@ -227,12 +227,27 @@ export function GrantDetailSection({ navigate, goHome, goBack, selectedGrant, ha
   );
 }
 
-// ─── BusinessSection ──────────────────────────────────────────────────────────
-export function BusinessSection({ goHome, goBack }: NavProps) {
+// ─── ScienceSection ───────────────────────────────────────────────────────────
+export function ScienceSection({ goHome, goBack }: NavProps) {
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
       <NavButtons onHome={goHome} onBack={goBack} />
-      <h1 className="font-merriweather font-bold text-3xl text-deep mb-8">Бизнес</h1>
+      <h1 className="font-merriweather font-bold text-3xl text-deep mb-8">Популяризация науки</h1>
+      <div className="grid md:grid-cols-2 gap-6 mb-10">
+        {[
+          { icon: "Microscope", title: "Научные кружки и клубы", desc: "Объединения студентов по научным интересам: агробиотехнологии, цифровое земледелие, экология." },
+          { icon: "Tv", title: "Лекции и вебинары", desc: "Открытые лекции ведущих учёных и предпринимателей для студентов и широкой публики." },
+          { icon: "Newspaper", title: "Научные публикации", desc: "Помощь в подготовке статей в рецензируемых изданиях, включая ВАК и Scopus." },
+          { icon: "Award", title: "Олимпиады и конкурсы", desc: "Организация и участие в региональных и федеральных научных соревнованиях." },
+        ].map((item, i) => (
+          <div key={i} className="bg-card border border-border rounded-xl p-5 hover:shadow-md transition-shadow">
+            <div className="w-9 h-9 bg-teal-50 rounded-lg flex items-center justify-center mb-3"><Icon name={item.icon} size={17} className="text-primary" /></div>
+            <h3 className="font-merriweather font-bold text-deep mb-2">{item.title}</h3>
+            <p className="text-sm text-muted-foreground">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+      <h2 className="font-merriweather font-bold text-2xl text-deep mb-6">Бизнес</h2>
       <div className="grid md:grid-cols-3 gap-4">
         {[
           { icon: "BookOpen", title: "Каталог инновационных разработок", desc: "Реестр технологий и разработок ОмГАУ, доступных для трансфера бизнесу.", items: ["Агробиотехнологии", "Цифровые решения", "Экотехнологии"] },
@@ -254,30 +269,6 @@ export function BusinessSection({ goHome, goBack }: NavProps) {
                 ))}
               </ul>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// ─── ScienceSection ───────────────────────────────────────────────────────────
-export function ScienceSection({ goHome, goBack }: NavProps) {
-  return (
-    <div className="max-w-4xl mx-auto px-6 py-10">
-      <NavButtons onHome={goHome} onBack={goBack} />
-      <h1 className="font-merriweather font-bold text-3xl text-deep mb-8">Популяризация науки</h1>
-      <div className="grid md:grid-cols-2 gap-6">
-        {[
-          { icon: "Microscope", title: "Научные кружки и клубы", desc: "Объединения студентов по научным интересам: агробиотехнологии, цифровое земледелие, экология." },
-          { icon: "Tv", title: "Лекции и вебинары", desc: "Открытые лекции ведущих учёных и предпринимателей для студентов и широкой публики." },
-          { icon: "Newspaper", title: "Научные публикации", desc: "Помощь в подготовке статей в рецензируемых изданиях, включая ВАК и Scopus." },
-          { icon: "Award", title: "Олимпиады и конкурсы", desc: "Организация и участие в региональных и федеральных научных соревнованиях." },
-        ].map((item, i) => (
-          <div key={i} className="bg-card border border-border rounded-xl p-5 hover:shadow-md transition-shadow">
-            <div className="w-9 h-9 bg-teal-50 rounded-lg flex items-center justify-center mb-3"><Icon name={item.icon} size={17} className="text-primary" /></div>
-            <h3 className="font-merriweather font-bold text-deep mb-2">{item.title}</h3>
-            <p className="text-sm text-muted-foreground">{item.desc}</p>
           </div>
         ))}
       </div>

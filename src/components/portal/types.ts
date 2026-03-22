@@ -1,6 +1,6 @@
 // ─── Types ────────────────────────────────────────────────────────────────────
 export type Section =
-  | "home" | "about" | "news" | "victories" | "students" | "business"
+  | "home" | "about" | "news" | "victories" | "students"
   | "science" | "team" | "links" | "infographics" | "survey" | "contacts"
   | "partners" | "login" | "calendar" | "grant-detail";
 
@@ -78,7 +78,6 @@ export const NAV_ITEMS = [
   { label: "Новости", section: "news" as Section, icon: "Newspaper" },
   { label: "Победы", section: "victories" as Section, icon: "Trophy" },
   { label: "Студентам", section: "students" as Section, icon: "GraduationCap" },
-  { label: "Бизнес", section: "business" as Section, icon: "Briefcase" },
   { label: "Наука", section: "science" as Section, icon: "FlaskConical" },
   { label: "Команда", section: "team" as Section, icon: "Users" },
   { label: "Ссылки", section: "links" as Section, icon: "Link" },

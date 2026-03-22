@@ -6,7 +6,7 @@ import { Header, Footer, QuestionDialog } from "@/components/portal/LayoutCompon
 import Icon from "@/components/ui/icon";
 import { HomeSection, AboutSection, NewsSection, VictoriesSection, CalendarSection } from "@/components/portal/HomeSections";
 import {
-  StudentsSection, GrantDetailSection, BusinessSection, ScienceSection,
+  StudentsSection, GrantDetailSection, ScienceSection,
   TeamSection, LinksSection, InfographicsSection, SurveySection,
   ContactsSection, PartnersSection, LoginSection,
 } from "@/components/portal/ContentSections";
@@ -67,7 +67,6 @@ export default function Index() {
       case "calendar":    return <CalendarSection {...navProps} calendarFilter={calendarFilter} setCalendarFilter={setCalendarFilter} filteredEvents={filteredEvents} />;
       case "students":    return <StudentsSection {...navProps} studentsTab={studentsTab} setStudentsTab={setStudentsTab} activeGrants={activeGrants} archiveGrants={archiveGrants} grantYearFilter={grantYearFilter} setGrantYearFilter={setGrantYearFilter} setSelectedGrant={setSelectedGrant} />;
       case "grant-detail":return <GrantDetailSection {...navProps} selectedGrant={selectedGrant} handleQuestion={handleQuestion} />;
-      case "business":    return <BusinessSection {...navProps} />;
       case "science":     return <ScienceSection {...navProps} />;
       case "team":        return <TeamSection {...navProps} />;
       case "links":       return <LinksSection {...navProps} />;
