@@ -66,7 +66,7 @@ export function Header({ section, isLoggedIn, mobileMenuOpen, setMobileMenuOpen,
         </button>
 
         <nav className="hidden xl:flex items-center gap-0.5 flex-wrap">
-          {NAV_ITEMS.slice(0, 7).map(item => (
+          {NAV_ITEMS.map(item => (
             <button key={item.section} onClick={() => navigate(item.section)}
               className={`px-2.5 py-1.5 rounded text-xs transition-all ${section === item.section ? "bg-black/10 text-black" : "text-black hover:bg-black/10"}`}>
               {item.label}
