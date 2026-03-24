@@ -276,45 +276,6 @@ export function ScienceSection({ goHome, goBack }: NavProps) {
   );
 }
 
-// ─── TeamSection ──────────────────────────────────────────────────────────────
-export function TeamSection({ goHome, goBack }: NavProps) {
-  return (
-    <div className="max-w-5xl mx-auto px-6 py-10">
-      <NavButtons onHome={goHome} onBack={goBack} />
-      <h1 className="font-merriweather font-bold text-3xl text-deep mb-8">Команда</h1>
-      <div className="mb-8">
-        {TEAM.filter(m => m.isHead).map(m => (
-          <div key={m.name} className="bg-gradient-to-r from-teal-dark to-teal text-white rounded-2xl p-6 flex flex-col sm:flex-row items-center sm:items-start gap-5">
-            <img src={m.photo} alt={m.name} className="w-24 h-24 rounded-full ring-4 ring-white/30 flex-shrink-0" />
-            <div>
-              <div className="text-xs text-white/60 mb-1">Руководитель управления</div>
-              <h2 className="font-merriweather font-black text-xl">{m.name}</h2>
-              <p className="text-white/80 text-sm mt-1">{m.role}</p>
-              <div className="flex flex-col sm:flex-row gap-3 mt-3 text-sm">
-                <a href={`mailto:${m.email}`} className="flex items-center gap-1.5 text-white/80 hover:text-white transition-colors"><Icon name="Mail" size={13} />{m.email}</a>
-                {m.phone && <span className="flex items-center gap-1.5 text-white/80"><Icon name="Phone" size={13} />{m.phone}</span>}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-      <h3 className="font-merriweather font-bold text-xl text-deep mb-4">Сотрудники</h3>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-4">
-        {TEAM.filter(m => !m.isHead).map(m => (
-          <div key={m.name} className="bg-card border border-border rounded-xl p-4 flex items-start gap-3 hover:shadow-md transition-shadow">
-            <img src={m.photo} alt={m.name} className="w-12 h-12 rounded-full flex-shrink-0" />
-            <div>
-              <h4 className="font-semibold text-sm text-deep">{m.name}</h4>
-              <p className="text-xs text-muted-foreground mt-0.5">{m.role}</p>
-              <a href={`mailto:${m.email}`} className="flex items-center gap-1 text-xs text-primary mt-1.5 hover:underline"><Icon name="Mail" size={11} />{m.email}</a>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 // ─── LinksSection ─────────────────────────────────────────────────────────────
 export function LinksSection({ goHome, goBack }: NavProps) {
   return (

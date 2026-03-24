@@ -1,7 +1,7 @@
 // ─── Types ────────────────────────────────────────────────────────────────────
 export type Section =
   | "home" | "about" | "news" | "victories" | "students"
-  | "science" | "team" | "links" | "infographics" | "survey" | "contacts"
+  | "science" | "links" | "infographics" | "survey" | "contacts"
   | "partners" | "login" | "calendar" | "grant-detail";
 
 export type EventType = "competition" | "grant" | "event";
@@ -76,10 +76,9 @@ export const typeBadgeColor = (t: EventType) => ({ competition: "bg-blue-100 tex
 export const NAV_ITEMS = [
   { label: "О нас", section: "about" as Section, icon: "Info" },
   { label: "Новости", section: "news" as Section, icon: "Newspaper" },
-  { label: "Победы", section: "victories" as Section, icon: "Trophy" },
+  { label: "Победители", section: "victories" as Section, icon: "Trophy" },
   { label: "Студентам", section: "students" as Section, icon: "GraduationCap" },
   { label: "Наука", section: "science" as Section, icon: "FlaskConical" },
-  { label: "Команда", section: "team" as Section, icon: "Users" },
   { label: "Ссылки", section: "links" as Section, icon: "Link" },
   { label: "Инфографика", section: "infographics" as Section, icon: "BarChart3" },
   { label: "Анкета", section: "survey" as Section, icon: "ClipboardList" },

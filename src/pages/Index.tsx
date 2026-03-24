@@ -7,7 +7,7 @@ import Icon from "@/components/ui/icon";
 import { HomeSection, AboutSection, NewsSection, VictoriesSection, CalendarSection } from "@/components/portal/HomeSections";
 import {
   StudentsSection, GrantDetailSection, ScienceSection,
-  TeamSection, LinksSection, InfographicsSection, SurveySection,
+  LinksSection, InfographicsSection, SurveySection,
   ContactsSection, PartnersSection, LoginSection,
 } from "@/components/portal/ContentSections";
 
@@ -68,7 +68,6 @@ export default function Index() {
       case "students":    return <StudentsSection {...navProps} studentsTab={studentsTab} setStudentsTab={setStudentsTab} activeGrants={activeGrants} archiveGrants={archiveGrants} grantYearFilter={grantYearFilter} setGrantYearFilter={setGrantYearFilter} setSelectedGrant={setSelectedGrant} />;
       case "grant-detail":return <GrantDetailSection {...navProps} selectedGrant={selectedGrant} handleQuestion={handleQuestion} />;
       case "science":     return <ScienceSection {...navProps} />;
-      case "team":        return <TeamSection {...navProps} />;
       case "links":       return <LinksSection {...navProps} />;
       case "infographics":return <InfographicsSection {...navProps} />;
       case "survey":      return <SurveySection {...navProps} />;
