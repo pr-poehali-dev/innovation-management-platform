@@ -149,9 +149,7 @@ export function Footer({ navigate, handleQuestion }: FooterProps) {
         </div>
         <div className="border-t border-white/10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
           <span>© 2026 Управление инноваций и предпринимательства </span>
-          <button onClick={handleQuestion} className="flex items-center gap-1.5 text-gold hover:text-gold/80 transition-colors">
-            <Icon name="MessageCircleQuestion" size={12} />Задать вопрос
-          </button>
+          <button onClick={handleQuestion} className="flex items-center gap-1.5 text-gold hover:text-gold/80 transition-colors"></button>
         </div>
       </div>
     </footer>
