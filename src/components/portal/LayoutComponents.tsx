@@ -131,10 +131,10 @@ export function Footer({ navigate, handleQuestion }: FooterProps) {
             <p className="text-xs leading-relaxed">ФГБОУ ВО Омский ГАУ<br />644008, г. Омск, Институтская площадь, 1</p>
           </div>
           <div>
-            <div className="font-semibold text-white text-sm mb-3">Разделы</div>
+            <div className="font-semibold text-white text-sm mb-3"></div>
             <div className="grid grid-cols-2 gap-1">
               {NAV_ITEMS.map(item => (
-                <button key={item.section} onClick={() => navigate(item.section)} className="flex items-center gap-1.5 text-xs hover:text-white transition-colors story-link text-left">{item.label}</button>
+                <button className="" key={item.section} onClick={() => navigate(item.section)} className="flex items-center gap-1.5 text-xs hover:text-white transition-colors story-link text-left">{item.label}</button>
               ))}
             </div>
           </div>
