@@ -21,10 +21,7 @@ export interface GrantItem {
 export const EVENTS: CalendarEvent[] = [
   { id: 1, title: "УМНИК — приём заявок", date: "2026-03-15", type: "grant", deadline: "2026-03-15", description: "Программа поддержки молодых учёных до 30 лет. Грант до 1 млн руб." },
   { id: 2, title: "Студенческий стартап — 2026", date: "2026-04-01", type: "competition", deadline: "2026-04-01", description: "Конкурс проектов среди студентов вузов РФ. Грант 1 млн руб." },
-  { id: 3, title: "Форум инновационных технологий", date: "2026-03-28", type: "event", description: "Ежегодный форум с участием ведущих учёных и предпринимателей." },
   { id: 4, title: "Старт-1 — подача заявок", date: "2026-05-10", type: "grant", deadline: "2026-05-10", description: "Коммерциализация разработок. Первая стадия." },
-  { id: 5, title: "Акселератор ОмГАУ", date: "2026-04-15", type: "competition", description: "12-недельная программа для агротех стартапов." },
-  { id: 6, title: "Международная конференция AgriTech", date: "2026-06-05", type: "event", description: "Конференция по цифровизации сельского хозяйства." },
 ];
 
 export const GRANTS: GrantItem[] = [
