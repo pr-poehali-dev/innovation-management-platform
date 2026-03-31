@@ -201,6 +201,9 @@ export function NewsDetailSection({ goHome, goBack, selectedNews }: NewsDetailSe
         <span className="text-xs text-muted-foreground">{selectedNews.date}</span>
       </div>
       <h1 className="font-merriweather font-bold text-2xl text-deep mb-6">{selectedNews.title}</h1>
+      {selectedNews.image && (
+        <img src={selectedNews.image} alt={selectedNews.title} className="mb-6 rounded-xl border border-border max-w-[180px]" />
+      )}
       <div className="space-y-4">
         {paragraphs.map((para, i) => {
           if (para.startsWith("•") || para.includes("\n•")) {
