@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 // ─── Portal components ────────────────────────────────────────────────────────
-import { Section, EventType, GrantItem, GRANTS, VICTORIES, EVENTS } from "@/components/portal/types";
+import { Section, EventType, GrantItem, NewsItem, GRANTS, VICTORIES, EVENTS } from "@/components/portal/types";
 import { Header, Footer, QuestionDialog } from "@/components/portal/LayoutComponents";
 import Icon from "@/components/ui/icon";
-import { HomeSection, AboutSection, NewsSection, VictoriesSection, CalendarSection } from "@/components/portal/HomeSections";
+import { HomeSection, AboutSection, NewsSection, NewsDetailSection, VictoriesSection, CalendarSection } from "@/components/portal/HomeSections";
 import {
   StudentsSection, GrantDetailSection, ScienceSection,
   LinksSection, InfographicsSection, SurveySection,
@@ -24,6 +24,7 @@ export default function Index() {
   const [questionSent, setQuestionSent] = useState(false);
   const [calendarFilter, setCalendarFilter] = useState<EventType | "all">("all");
   const [selectedGrant, setSelectedGrant] = useState<GrantItem | null>(null);
+  const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
   const [grantYearFilter, setGrantYearFilter] = useState<number | "all">("all");
   const [victoriesFilter, setVictoriesFilter] = useState<string>("all");
   const [studentsTab, setStudentsTab] = useState<"competitions" | "grants" | "accelerators" | "stipends" | "science">("competitions");
@@ -62,7 +63,8 @@ export default function Index() {
     switch (section) {
       case "home":        return <HomeSection navigate={navigate} />;
       case "about":       return <AboutSection {...navProps} />;
-      case "news":        return <NewsSection {...navProps} />;
+      case "news":        return <NewsSection {...navProps} setSelectedNews={setSelectedNews} />;
+      case "news-detail": return <NewsDetailSection {...navProps} selectedNews={selectedNews} />;
       case "victories":   return <VictoriesSection {...navProps} victoriesFilter={victoriesFilter} setVictoriesFilter={setVictoriesFilter} filteredVictories={filteredVictories} />;
       case "calendar":    return <CalendarSection {...navProps} calendarFilter={calendarFilter} setCalendarFilter={setCalendarFilter} filteredEvents={filteredEvents} />;
       case "students":    return <StudentsSection {...navProps} studentsTab={studentsTab} setStudentsTab={setStudentsTab} activeGrants={activeGrants} archiveGrants={archiveGrants} grantYearFilter={grantYearFilter} setGrantYearFilter={setGrantYearFilter} setSelectedGrant={setSelectedGrant} />;

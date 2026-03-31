@@ -1,6 +1,6 @@
 import Icon from "@/components/ui/icon";
 import { NavButtons } from "./LayoutComponents";
-import { Section, EventType, CalendarEvent, GrantItem, EVENTS, NEWS, VICTORIES, typeLabel, typeBadgeColor } from "./types";
+import { Section, EventType, CalendarEvent, GrantItem, NewsItem, EVENTS, NEWS, VICTORIES, typeLabel, typeBadgeColor } from "./types";
 
 // ─── Shared props types ───────────────────────────────────────────────────────
 interface NavProps { navigate: (s: Section) => void; goHome: () => void; goBack: () => void; }
@@ -158,23 +158,77 @@ export function AboutSection({ goHome, goBack }: NavProps) {
 }
 
 // ─── NewsSection ──────────────────────────────────────────────────────────────
-export function NewsSection({ goHome, goBack }: NavProps) {
+interface NewsSectionProps extends NavProps { setSelectedNews: (n: NewsItem) => void; }
+export function NewsSection({ goHome, goBack, navigate, setSelectedNews }: NewsSectionProps) {
+  const handleClick = (n: NewsItem) => {
+    if (n.fullText) { setSelectedNews(n); navigate("news-detail"); }
+  };
   return (
     <div className="max-w-4xl mx-auto px-6 py-10">
       <NavButtons onHome={goHome} onBack={goBack} />
       <h1 className="font-merriweather font-bold text-3xl text-deep mb-8">Новости</h1>
       <div className="space-y-4">
         {NEWS.map(n => (
-          <article key={n.id} className="bg-card border border-border rounded-xl p-6 hover:shadow-md transition-shadow">
+          <article
+            key={n.id}
+            onClick={() => handleClick(n)}
+            className={`bg-card border border-border rounded-xl p-6 hover:shadow-md transition-shadow ${n.fullText ? "cursor-pointer" : ""}`}
+          >
             <div className="flex items-center gap-3 mb-3">
               <span className="text-xs bg-teal-50 text-primary px-2.5 py-1 rounded-full font-medium">{n.tag}</span>
               <span className="text-xs text-muted-foreground">{n.date}</span>
+              {n.fullText && <span className="ml-auto text-xs text-primary flex items-center gap-1">Подробнее <Icon name="ArrowRight" size={12} /></span>}
             </div>
             <h2 className="font-merriweather font-bold text-lg text-deep mb-2">{n.title}</h2>
             <p className="text-sm text-muted-foreground leading-relaxed">{n.text}</p>
           </article>
         ))}
       </div>
+    </div>
+  );
+}
+
+// ─── NewsDetailSection ────────────────────────────────────────────────────────
+interface NewsDetailSectionProps extends NavProps { selectedNews: NewsItem | null; }
+export function NewsDetailSection({ goHome, goBack, selectedNews }: NewsDetailSectionProps) {
+  if (!selectedNews) return null;
+  const paragraphs = selectedNews.fullText?.split("\n\n") ?? [];
+  return (
+    <div className="max-w-3xl mx-auto px-6 py-10">
+      <NavButtons onHome={goHome} onBack={goBack} />
+      <div className="flex items-center gap-3 mb-4">
+        <span className="text-xs bg-teal-50 text-primary px-2.5 py-1 rounded-full font-medium">{selectedNews.tag}</span>
+        <span className="text-xs text-muted-foreground">{selectedNews.date}</span>
+      </div>
+      <h1 className="font-merriweather font-bold text-2xl text-deep mb-6">{selectedNews.title}</h1>
+      <div className="space-y-4">
+        {paragraphs.map((para, i) => {
+          if (para.startsWith("•") || para.includes("\n•")) {
+            const lines = para.split("\n").filter(Boolean);
+            return (
+              <ul key={i} className="space-y-1.5 ml-2">
+                {lines.map((line, j) => (
+                  <li key={j} className="flex items-start gap-2 text-sm text-foreground leading-relaxed">
+                    <Icon name="ChevronRight" size={14} className="text-primary mt-0.5 flex-shrink-0" />
+                    <span>{line.replace(/^•\s*/, "")}</span>
+                  </li>
+                ))}
+              </ul>
+            );
+          }
+          return <p key={i} className="text-sm text-foreground leading-relaxed whitespace-pre-line">{para}</p>;
+        })}
+      </div>
+      {selectedNews.link && (
+        <a
+          href={selectedNews.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 mt-8 bg-primary text-primary-foreground px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-primary/90 transition-colors"
+        >
+          Подробности на сайте фонда <Icon name="ExternalLink" size={14} />
+        </a>
+      )}
     </div>
   );
 }

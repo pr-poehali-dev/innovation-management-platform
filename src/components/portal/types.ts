@@ -2,12 +2,15 @@
 export type Section =
   | "home" | "about" | "news" | "victories" | "students"
   | "science" | "links" | "infographics" | "survey" | "contacts"
-  | "partners" | "login" | "calendar" | "grant-detail";
+  | "partners" | "login" | "calendar" | "grant-detail" | "news-detail";
 
 export type EventType = "competition" | "grant" | "event";
 
 export interface CalendarEvent {
   id: number; title: string; date: string; type: EventType; deadline?: string; description: string;
+}
+export interface NewsItem {
+  id: number; date: string; title: string; tag: string; text: string; fullText?: string; link?: string;
 }
 export interface TeamMember {
   name: string; role: string; email: string; phone?: string; photo: string; isHead?: boolean;
@@ -40,7 +43,13 @@ export const TEAM: TeamMember[] = [
   { name: "Тимофеев Дмитрий Васильевич", role: "Менеджер по партнёрствам", email: "dv.timofeev@omgau.org", photo: "https://ui-avatars.com/api/?name=Тимофеев+Дмитрий&background=1a6b5a&color=fff&size=128" },
 ];
 
-export const NEWS = [
+export const NEWS: NewsItem[] = [
+  {
+    id: 6, date: "31 марта 2026", title: "Открыт приём заявок на «Студенческий стартап»", tag: "Гранты",
+    text: "Фонд содействия инновациям открывает прием заявок на грант «Студенческий стартап» в размере 1 млн рублей на развитие собственного проекта.",
+    fullText: `⚡️ Уважаемые студенты, магистранты и аспиранты!\n\nФонд содействия инновациям открывает прием заявок на грант «Студенческий стартап» в размере 1 млн рублей на развитие собственного проекта.\n\n⚡️ Седьмая очередь приема заявок проходит с 09.02.2026 по 18.03.2026\n\nПобедителями в этом году станут 2250 проектов со всей России. К участию приглашаются обучающиеся бакалавриата, специалитета, магистратуры и аспирантуры, в том числе иностранные студенты.\n\nНаправления проектов:\n• цифровые технологии;\n• медицина и здоровье;\n• новые материалы и химические технологии;\n• новые приборы и производственные технологии;\n• биотехнологии;\n• ресурсосберегающая энергетика;\n• креативные индустрии.\n\nУправление инноваций и предпринимательства Омского ГАУ готово стать вашим проводником на пути получения гранта.`,
+    link: "https://www.fasie.ru/programs/programma-studstartup/#uslovia",
+  },
   { id: 1, date: "18 февраля 2026", title: "Открыт приём заявок на программу УМНИК-2026", tag: "Гранты", text: "Фонд содействия инновациям объявил о начале приёма заявок по программе «У.М.Н.И.К.-2026». Приглашаем студентов и молодых учёных до 30 лет подать заявки." },
   { id: 2, date: "12 февраля 2026", title: "Студенты ОмГАУ выиграли 3 гранта «Студенческий стартап»", tag: "Победы", text: "По итогам конкурса «Студенческий стартап» 2025 года три проекта нашего университета получили финансирование по 1 млн рублей каждый." },
   { id: 3, date: "5 февраля 2026", title: "Запуск нового акселератора AgriTech 2026", tag: "Мероприятия", text: "Управление инноваций запускает 12-недельную акселерационную программу для стартапов в сфере агротехнологий." },
