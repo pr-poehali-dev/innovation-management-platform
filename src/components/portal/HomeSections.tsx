@@ -36,7 +36,7 @@ export function HomeSection({ navigate }: { navigate: (s: Section) => void }) {
         <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
             { value: "34", label: "Заявок подано в 2025", icon: "FileText" },
-            { value: "18", label: "Победителей конкурсов", icon: "Trophy" },
+            { value: "5", label: "Победителей конкурсов", icon: "Trophy" },
             { value: "24,5 млн", label: "Конкурсное финансирование", icon: "Banknote" },
             { value: "5", label: "Научные мероприятия", icon: "Rocket" },
           ].map((s, i) => (
