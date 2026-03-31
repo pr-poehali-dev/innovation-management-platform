@@ -153,25 +153,6 @@ export function AboutSection({ goHome, goBack }: NavProps) {
           </div>
         ))}
       </div>
-      <h2 className="font-merriweather font-bold text-xl text-deep mb-4">Структура управления</h2>
-      <div className="bg-card border border-border rounded-xl overflow-hidden">
-        <div className="bg-teal-dark text-white px-5 py-3 font-semibold text-sm">Организационная структура</div>
-        <div className="p-5 space-y-3">
-          {[
-            { role: "Начальник управления", name: "Косенчук О.В.", email: "ov.kosenchuk@omgau.org", indent: false },
-            { role: "Отдел грантовой деятельности", name: "2 специалиста", email: "", indent: true },
-            { role: "Отдел акселерации и стартапов", name: "1 специалист", email: "", indent: true },
-            { role: "Отдел партнёрских программ", name: "1 менеджер", email: "", indent: true },
-          ].map((row, i) => (
-            <div key={i} className={`flex items-center gap-3 ${row.indent ? "pl-6 border-l-2 border-teal-100" : ""}`}>
-              <Icon name={i === 0 ? "Crown" : "ChevronRight"} size={13} className="text-primary flex-shrink-0" />
-              <span className="font-medium text-sm text-deep">{row.role}</span>
-              <span className="text-sm text-muted-foreground">— {row.name}</span>
-              {row.email && <a href={`mailto:${row.email}`} className="text-xs text-primary ml-auto hover:underline">{row.email}</a>}
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
