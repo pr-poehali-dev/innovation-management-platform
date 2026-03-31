@@ -39,7 +39,6 @@ export function StudentsSection({ navigate, goHome, goBack, studentsTab, setStud
   const stipends = [
     { title: "Стипендия Президента РФ", amount: "22 800 ₽/мес", req: "Достижения в науке и спорте" },
     { title: "Стипендия Правительства РФ", amount: "14 400 ₽/мес", req: "Приоритетные специальности" },
-    { title: "Стипендия им. П.А. Столыпина", amount: "5 000 ₽/мес", req: "Студенты ОмГАУ, 1-е место рейтинга" },
   ];
 
   return (
