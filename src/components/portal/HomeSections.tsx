@@ -13,10 +13,6 @@ export function HomeSection({ navigate }: { navigate: (s: Section) => void }) {
         <div className="absolute top-10 right-16 w-72 h-72 rounded-full bg-gold/10 blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-56 h-56 rounded-full bg-white/5 blur-3xl pointer-events-none" />
         <div className="max-w-4xl mx-auto relative">
-          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur rounded-full px-4 py-1.5 text-xs mb-6">
-            <Icon name="Lightbulb" size={12} className="text-gold" />
-            ФГБОУ ВО Омский ГАУ
-          </div>
           <h1 className="font-merriweather font-black text-3xl md:text-5xl leading-tight mb-4">
             Управление инноваций<br />
             <span className="text-gold">и предпринимательства</span>
