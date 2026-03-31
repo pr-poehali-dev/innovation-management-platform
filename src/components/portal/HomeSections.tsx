@@ -201,6 +201,13 @@ export function NewsDetailSection({ goHome, goBack, selectedNews }: NewsDetailSe
         <span className="text-xs text-muted-foreground">{selectedNews.date}</span>
       </div>
       <h1 className="font-merriweather font-bold text-2xl text-deep mb-6">{selectedNews.title}</h1>
+      {selectedNews.images && selectedNews.images.length > 0 && (
+        <div className="flex flex-wrap gap-3 mb-6">
+          {selectedNews.images.map((src, i) => (
+            <img key={i} src={src} alt="" className="rounded-xl border border-border max-h-24 object-contain" />
+          ))}
+        </div>
+      )}
       <div className="space-y-4">
         {paragraphs.map((para, i) => {
           if (para.startsWith("•") || para.includes("\n•")) {
