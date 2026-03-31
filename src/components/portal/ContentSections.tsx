@@ -295,8 +295,86 @@ export function LinksSection({ goHome, goBack }: NavProps) {
   );
 }
 
+// ─── InfographicsDetailSection ────────────────────────────────────────────────
+export function InfographicsDetailSection({ goHome, goBack }: NavProps) {
+  const directions = [
+    "Н1. Цифровые технологии",
+    "Н2. Медицина и технологии здоровьесбережения",
+    "Н3. Новые материалы и химические технологии",
+    "Н4. Новые приборы и интеллектуальные производственные технологии",
+    "Н5. Биотехнологии",
+    "Н6. Ресурсосберегающая энергетика",
+    "Н7. Креативные индустрии",
+  ];
+  const obligations = [
+    "создано юридическое лицо, где доля грантополучателя в уставном капитале составляет более 51% и он является генеральным директором",
+    "разработан бизнес-план инновационного проекта",
+    "разработан сайт стартап-проекта",
+  ];
+  return (
+    <div className="max-w-3xl mx-auto px-6 py-10">
+      <NavButtons onHome={goHome} onBack={goBack} />
+      <h1 className="font-merriweather font-bold text-2xl text-deep mb-8">Студенческий стартап</h1>
+      <div className="space-y-5">
+        <div className="bg-card border border-border rounded-xl p-5 space-y-3">
+          <div className="flex items-start gap-3">
+            <Icon name="Users" size={16} className="text-primary mt-0.5 flex-shrink-0" />
+            <div><span className="font-semibold text-deep text-sm">Для кого: </span><span className="text-sm text-foreground">Обучающиеся по образовательным программам высшего образования, имеющим аккредитацию Рособрнадзора России</span></div>
+          </div>
+          <div className="flex items-start gap-3">
+            <Icon name="ClipboardList" size={16} className="text-primary mt-0.5 flex-shrink-0" />
+            <div><span className="font-semibold text-deep text-sm">Требования: </span><span className="text-sm text-foreground">физические лица, обучающиеся по образовательным программам высшего образования, имеющим аккредитацию Федеральной службы по надзору в сфере образования и науки, не имеющие действующих договоров с Фондом и не получавшие ранее грант по программе «Студенческий стартап».</span></div>
+          </div>
+          <div className="flex items-start gap-3">
+            <Icon name="Banknote" size={16} className="text-primary mt-0.5 flex-shrink-0" />
+            <div><span className="font-semibold text-deep text-sm">Размер гранта: </span><span className="text-sm text-foreground">1 млн рублей</span></div>
+          </div>
+          <div className="flex items-start gap-3">
+            <Icon name="Clock" size={16} className="text-primary mt-0.5 flex-shrink-0" />
+            <div><span className="font-semibold text-deep text-sm">Срок выполнения: </span><span className="text-sm text-foreground">12 месяцев (1 этап — 1 месяц, 2 этап — 11 месяцев)</span></div>
+          </div>
+          <div className="flex items-start gap-3">
+            <Icon name="Repeat" size={16} className="text-primary mt-0.5 flex-shrink-0" />
+            <div><span className="font-semibold text-deep text-sm">Периодичность: </span><span className="text-sm text-foreground">ежегодно</span></div>
+          </div>
+        </div>
+
+        <div className="bg-card border border-border rounded-xl p-5">
+          <h3 className="font-merriweather font-bold text-deep mb-3 flex items-center gap-2"><Icon name="LayoutList" size={16} className="text-primary" />Направления программы</h3>
+          <ul className="space-y-2">
+            {directions.map((d, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-foreground">
+                <Icon name="ChevronRight" size={14} className="text-primary mt-0.5 flex-shrink-0" />{d}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="bg-card border border-border rounded-xl p-5">
+          <h3 className="font-merriweather font-bold text-deep mb-3 flex items-center gap-2"><Icon name="CheckCircle" size={16} className="text-primary" />Обязательства</h3>
+          <ul className="space-y-2">
+            {obligations.map((o, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-foreground">
+                <Icon name="ChevronRight" size={14} className="text-primary mt-0.5 flex-shrink-0" />{o}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="flex items-center gap-4 mt-2">
+          <a href="https://fasie.ru/studstartup/" target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-primary/90 transition-colors">
+            Подробности на сайте фонда <Icon name="ExternalLink" size={14} />
+          </a>
+          <img src="https://cdn.poehali.dev/projects/6e3c044a-dc10-4697-ac5a-b4bdac9a79c2/bucket/21192d04-d765-4f2d-9c4d-22e2744c4f26.png" alt="QR-код" className="w-16 h-16 rounded-lg border border-border" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── InfographicsSection ──────────────────────────────────────────────────────
-export function InfographicsSection({ goHome, goBack }: NavProps) {
+export function InfographicsSection({ goHome, goBack, navigate }: NavProps) {
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
       <NavButtons onHome={goHome} onBack={goBack} />
@@ -373,6 +451,17 @@ export function InfographicsSection({ goHome, goBack }: NavProps) {
             ))}
           </div>
         </div>
+      </div>
+      <div className="mt-8">
+        <h2 className="font-merriweather font-bold text-lg text-deep mb-3">Программы поддержки</h2>
+        <button
+          onClick={() => navigate("infographics-detail")}
+          className="inline-flex items-center gap-2 bg-card border border-border rounded-xl px-5 py-3 text-sm font-semibold text-primary hover:border-primary/40 hover:shadow-md transition-all"
+        >
+          <Icon name="Zap" size={16} className="text-primary" />
+          Студенческий стартап
+          <Icon name="ArrowRight" size={14} />
+        </button>
       </div>
     </div>
   );

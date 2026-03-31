@@ -2,7 +2,7 @@
 export type Section =
   | "home" | "about" | "news" | "victories" | "students"
   | "science" | "links" | "infographics" | "survey" | "contacts"
-  | "partners" | "login" | "calendar" | "grant-detail" | "news-detail";
+  | "partners" | "login" | "calendar" | "grant-detail" | "news-detail" | "infographics-detail";
 
 export type EventType = "competition" | "grant" | "event";
 

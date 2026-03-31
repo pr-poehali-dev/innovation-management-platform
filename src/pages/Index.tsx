@@ -7,7 +7,7 @@ import Icon from "@/components/ui/icon";
 import { HomeSection, AboutSection, NewsSection, NewsDetailSection, VictoriesSection, CalendarSection } from "@/components/portal/HomeSections";
 import {
   StudentsSection, GrantDetailSection, ScienceSection,
-  LinksSection, InfographicsSection, SurveySection,
+  LinksSection, InfographicsSection, InfographicsDetailSection, SurveySection,
   ContactsSection, PartnersSection, LoginSection,
 } from "@/components/portal/ContentSections";
 
@@ -72,6 +72,7 @@ export default function Index() {
       case "science":     return <ScienceSection {...navProps} />;
       case "links":       return <LinksSection {...navProps} />;
       case "infographics":return <InfographicsSection {...navProps} />;
+      case "infographics-detail": return <InfographicsDetailSection {...navProps} />;
       case "survey":      return <SurveySection {...navProps} />;
       case "contacts":    return <ContactsSection {...navProps} />;
       case "partners":    return <PartnersSection {...navProps} />;
