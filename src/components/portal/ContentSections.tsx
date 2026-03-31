@@ -381,17 +381,6 @@ export function InfographicsSection({ goHome, goBack, navigate }: NavProps) {
       <h1 className="font-merriweather font-bold text-3xl text-deep mb-8">Инфографика</h1>
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-card border border-border rounded-xl p-5">
-          <h3 className="font-merriweather font-bold text-deep mb-4 flex items-center gap-2"><Icon name="GitBranch" size={17} className="text-primary" />Процедура подачи заявки</h3>
-          <div className="space-y-3">
-            {["Регистрация на платформе фонда", "Подготовка документации", "Подача заявки онлайн", "Экспертная оценка проекта", "Объявление результатов", "Заключение договора"].map((step, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <div className="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">{i + 1}</div>
-                <div className="flex-1 text-sm">{step}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="bg-card border border-border rounded-xl p-5">
           <h3 className="font-merriweather font-bold text-deep mb-4 flex items-center gap-2"><Icon name="BarChart3" size={17} className="text-primary" />Размеры грантов по программам</h3>
           <div className="space-y-3">
             {[
@@ -409,27 +398,6 @@ export function InfographicsSection({ goHome, goBack, navigate }: NavProps) {
                 <div className="h-2.5 bg-muted rounded-full overflow-hidden">
                   <div className={`h-full ${g.color} rounded-full`} style={{ width: `${(g.amount / 6) * 100}%` }} />
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="bg-card border border-border rounded-xl p-5">
-          <h3 className="font-merriweather font-bold text-deep mb-4 flex items-center gap-2"><Icon name="Users" size={17} className="text-primary" />Структура коллектива</h3>
-          <div className="space-y-2">
-            {[
-              { role: "Научный руководитель", req: "Д.н. или К.н., публикации", required: true },
-              { role: "Исполнитель (1–2 чел.)", req: "Студент/аспирант/сотрудник", required: true },
-              { role: "Со-исполнитель", req: "По усмотрению", required: false },
-            ].map((row, i) => (
-              <div key={i} className="flex items-start gap-3 p-2.5 bg-muted rounded-lg">
-                <Icon name={row.required ? "CheckCircle" : "Circle"} size={13} className={`mt-0.5 ${row.required ? "text-primary" : "text-muted-foreground"}`} />
-                <div className="flex-1">
-                  <div className="font-medium text-sm text-deep">{row.role}</div>
-                  <div className="text-xs text-muted-foreground">{row.req}</div>
-                </div>
-                <span className={`text-xs px-2 py-0.5 rounded-full ${row.required ? "bg-green-100 text-green-700" : "bg-muted-foreground/10 text-muted-foreground"}`}>
-                  {row.required ? "Обязательно" : "Опционально"}
-                </span>
               </div>
             ))}
           </div>
