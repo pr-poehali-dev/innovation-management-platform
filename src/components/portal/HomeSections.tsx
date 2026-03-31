@@ -37,7 +37,7 @@ export function HomeSection({ navigate }: { navigate: (s: Section) => void }) {
           {[
             { value: "34", label: "Заявок подано в 2025", icon: "FileText" },
             { value: "5", label: "Победителей конкурсов", icon: "Trophy" },
-            { value: "24,5 млн", label: "Конкурсное финансирование", icon: "Banknote" },
+            { value: "5 млн", label: "Конкурсное финансирование", icon: "Banknote" },
             { value: "5", label: "Научные мероприятия", icon: "Rocket" },
           ].map((s, i) => (
             <div key={i} className="text-center">
