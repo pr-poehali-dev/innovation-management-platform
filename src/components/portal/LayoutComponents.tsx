@@ -116,21 +116,13 @@ export function Footer({ navigate, handleQuestion }: FooterProps) {
   return (
     <footer className="bg-deep text-white/70 py-10 px-6 mt-12">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+        <div className="grid md:grid-cols-2 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-3">
               <Icon name="Lightbulb" size={16} className="text-gold" />
               <span className="font-merriweather font-bold text-white text-sm">Управление инноваций</span>
             </div>
             <p className="text-xs leading-relaxed">ФГБОУ ВО Омский ГАУ<br />644008, г. Омск, Институтская площадь, 1</p>
-          </div>
-          <div>
-            <div className="font-semibold text-white text-sm mb-3"></div>
-            <div className="grid grid-cols-2 gap-1">
-              {NAV_ITEMS.map(item => (
-                <button className="" key={item.section} onClick={() => navigate(item.section)} className="flex items-center gap-1.5 text-xs hover:text-white transition-colors story-link text-left">{item.label}</button>
-              ))}
-            </div>
           </div>
           <div>
             <div className="font-semibold text-white text-sm mb-3">Контакты</div>
