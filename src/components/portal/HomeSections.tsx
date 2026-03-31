@@ -201,9 +201,6 @@ export function NewsDetailSection({ goHome, goBack, selectedNews }: NewsDetailSe
         <span className="text-xs text-muted-foreground">{selectedNews.date}</span>
       </div>
       <h1 className="font-merriweather font-bold text-2xl text-deep mb-6">{selectedNews.title}</h1>
-      {selectedNews.image && (
-        <img src={selectedNews.image} alt={selectedNews.title} className="mb-6 rounded-xl border border-border max-w-[180px]" />
-      )}
       <div className="space-y-4">
         {paragraphs.map((para, i) => {
           if (para.startsWith("•") || para.includes("\n•")) {
@@ -222,15 +219,22 @@ export function NewsDetailSection({ goHome, goBack, selectedNews }: NewsDetailSe
           return <p key={i} className="text-sm text-foreground leading-relaxed whitespace-pre-line">{para}</p>;
         })}
       </div>
-      {selectedNews.link && (
-        <a
-          href={selectedNews.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 mt-8 bg-primary text-primary-foreground px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-primary/90 transition-colors"
-        >
-          Подробности на сайте фонда <Icon name="ExternalLink" size={14} />
-        </a>
+      {(selectedNews.link || selectedNews.image) && (
+        <div className="flex items-center gap-4 mt-8">
+          {selectedNews.link && (
+            <a
+              href={selectedNews.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-primary/90 transition-colors"
+            >
+              Подробности на сайте фонда <Icon name="ExternalLink" size={14} />
+            </a>
+          )}
+          {selectedNews.image && (
+            <img src={selectedNews.image} alt="QR-код" className="w-16 h-16 rounded-lg border border-border" />
+          )}
+        </div>
       )}
     </div>
   );
