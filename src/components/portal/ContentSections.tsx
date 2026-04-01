@@ -270,7 +270,6 @@ export function LinksSection({ goHome, goBack }: NavProps) {
           { cat: "Гранты и финансирование", links: [
             { title: "Фонд содействия инновациям", url: "https://fasie.ru", desc: "УМНИК, Старт, Бизнес-старт" },
             { title: "Российский научный фонд", url: "https://rscf.ru", desc: "Гранты для исследовательских коллективов" },
-            { title: "РФФИ", url: "https://rfbr.ru", desc: "Фундаментальные исследования" },
           ]},
           { cat: "Государственные порталы", links: [
             { title: "Госуслуги", url: "https://gosuslugi.ru", desc: "Государственные услуги онлайн" },
