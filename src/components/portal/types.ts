@@ -83,12 +83,12 @@ export const typeBadgeColor = (t: EventType) => ({ competition: "bg-blue-100 tex
 export const NAV_ITEMS = [
   { label: "О нас", section: "about" as Section, icon: "Info" },
   { label: "Новости", section: "news" as Section, icon: "Newspaper" },
+  { label: "Конкурсы", section: "students" as Section, icon: "Medal" },
   { label: "Победители", section: "victories" as Section, icon: "Trophy" },
-  { label: "Студентам", section: "students" as Section, icon: "GraduationCap" },
-  { label: "Наука", section: "science" as Section, icon: "FlaskConical" },
+  { label: "Инновации", section: "science" as Section, icon: "FlaskConical" },
+  { label: "Партнёры", section: "partners" as Section, icon: "Handshake" },
   { label: "Ссылки", section: "links" as Section, icon: "Link" },
   { label: "Инфографика", section: "infographics" as Section, icon: "BarChart3" },
   { label: "Анкета", section: "survey" as Section, icon: "ClipboardList" },
   { label: "Контакты", section: "contacts" as Section, icon: "Phone" },
-  { label: "Партнёры", section: "partners" as Section, icon: "Handshake" },
 ];
