@@ -153,9 +153,26 @@ interface QuestionDialogProps {
   sendQuestion: () => void;
 }
 
-export function QuestionDialog({ questionOpen, questionText, questionSent, setQuestionOpen, setQuestionText, sendQuestion }: QuestionDialogProps) {
+export function QuestionDialog({ questionOpen, questionSent, setQuestionOpen, setQuestionText: _, sendQuestion: __ }: QuestionDialogProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSend = async () => {
+    if (!message.trim()) return;
+    setLoading(true);
+    await fetch("https://functions.poehali.dev/f51a956a-328e-4cdf-b880-af3d8208db88", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, message, source: "Задать вопрос" }),
+    });
+    setLoading(false);
+    setSent(true);
+    setTimeout(() => { setSent(false); setQuestionOpen(false); setMessage(""); setName(""); setEmail(""); }, 3000);
+  };
+
   if (!questionOpen) return null;
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setQuestionOpen(false)}>
@@ -164,19 +181,19 @@ export function QuestionDialog({ questionOpen, questionText, questionSent, setQu
           <h3 className="font-merriweather font-bold text-lg text-deep">Задать вопрос</h3>
           <button onClick={() => setQuestionOpen(false)} className="text-muted-foreground hover:text-foreground"><Icon name="X" size={20} /></button>
         </div>
-        {questionSent ? (
+        {sent ? (
           <div className="text-center py-6">
             <div className="w-14 h-14 bg-teal-50 rounded-full flex items-center justify-center mx-auto mb-3">
               <Icon name="CheckCircle" size={28} className="text-primary" />
             </div>
             <p className="font-medium text-deep">Вопрос отправлен!</p>
-            <p className="text-sm text-muted-foreground mt-1">Ответ придёт на почту ov.kosenchuk@omgau.org</p>
+            <p className="text-sm text-muted-foreground mt-1">Ответ придёт на почту is.ryzhova@omgau.org</p>
           </div>
         ) : (
           <div className="space-y-3">
             <div>
               <label className="text-xs font-medium text-deep mb-1 block">Сообщение</label>
-              <textarea value={questionText} onChange={e => setQuestionText(e.target.value)}
+              <textarea value={message} onChange={e => setMessage(e.target.value)}
                 placeholder="Введите ваш вопрос..."
                 className="w-full border border-border rounded-lg p-3 text-sm resize-none h-28 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" />
             </div>
@@ -190,9 +207,9 @@ export function QuestionDialog({ questionOpen, questionText, questionSent, setQu
               <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email для ответа"
                 className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" />
             </div>
-            <button onClick={sendQuestion} disabled={!questionText.trim()}
+            <button onClick={handleSend} disabled={!message.trim() || loading}
               className="w-full bg-primary text-primary-foreground py-2.5 rounded-lg text-sm font-medium hover:bg-teal-light transition-colors disabled:opacity-40">
-              Отправить сообщение
+              {loading ? "Отправляем..." : "Отправить сообщение"}
             </button>
           </div>
         )}

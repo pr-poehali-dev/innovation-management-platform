@@ -56,6 +56,24 @@ export function SurveySection({ goHome, goBack }: NavProps) {
 }
 
 export function ContactsSection({ goHome, goBack }: NavProps) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSend = async () => {
+    if (!message.trim()) return;
+    setLoading(true);
+    await fetch("https://functions.poehali.dev/f51a956a-328e-4cdf-b880-af3d8208db88", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, message, source: "Написать нам" }),
+    });
+    setLoading(false);
+    setSent(true);
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-6 py-10">
       <NavButtons onHome={goHome} onBack={goBack} />
@@ -77,13 +95,22 @@ export function ContactsSection({ goHome, goBack }: NavProps) {
         </div>
         <div className="bg-card border border-border rounded-xl p-6">
           <h3 className="font-merriweather font-bold text-deep mb-4">Написать нам</h3>
-          <div className="space-y-3">
-            <div><label className="text-xs font-medium text-deep mb-1 block">Сообщение</label><textarea placeholder="Ваш вопрос или предложение..." className="w-full border border-border rounded-lg px-3 py-2 text-sm resize-none h-24 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" /></div>
-            {[{ l: "Имя", p: "Ваше имя" }, { l: "Email", p: "Email для ответа" }].map((f, i) => (
-              <div key={i}><label className="text-xs font-medium text-deep mb-1 block">{f.l}</label><input placeholder={f.p} className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" /></div>
-            ))}
-            <button className="w-full bg-primary text-primary-foreground py-2.5 rounded-lg font-medium hover:bg-teal-light transition-colors">Отправить сообщение</button>
-          </div>
+          {sent ? (
+            <div className="text-center py-8">
+              <div className="w-14 h-14 bg-teal-50 rounded-full flex items-center justify-center mx-auto mb-3"><Icon name="CheckCircle" size={28} className="text-primary" /></div>
+              <p className="font-medium text-deep">Сообщение отправлено!</p>
+              <p className="text-sm text-muted-foreground mt-1">Мы ответим вам в ближайшее время.</p>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              <div><label className="text-xs font-medium text-deep mb-1 block">Сообщение</label><textarea value={message} onChange={e => setMessage(e.target.value)} placeholder="Ваш вопрос или предложение..." className="w-full border border-border rounded-lg px-3 py-2 text-sm resize-none h-24 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" /></div>
+              <div><label className="text-xs font-medium text-deep mb-1 block">Имя</label><input value={name} onChange={e => setName(e.target.value)} placeholder="Ваше имя" className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" /></div>
+              <div><label className="text-xs font-medium text-deep mb-1 block">Email</label><input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email для ответа" className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" /></div>
+              <button onClick={handleSend} disabled={!message.trim() || loading} className="w-full bg-primary text-primary-foreground py-2.5 rounded-lg font-medium hover:bg-teal-light transition-colors disabled:opacity-40">
+                {loading ? "Отправляем..." : "Отправить сообщение"}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
