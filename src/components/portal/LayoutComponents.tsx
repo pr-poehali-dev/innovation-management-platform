@@ -119,7 +119,7 @@ export function Footer({ navigate, handleQuestion }: FooterProps) {
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <img src="https://cdn.poehali.dev/files/cec0af9c-7b7f-4171-a3b8-f8e3a64bf736.png" alt="УИиП логотип" className="w-8 h-8 rounded-full object-cover" />
+              <img src="https://cdn.poehali.dev/files/0d251974-c62e-4e11-b3a1-17bee3ab60eb.png" alt="УИиП логотип" className="h-12 w-auto object-cover rounded-xl" />
               <span className="font-merriweather font-bold text-white text-sm">Управление инноваций</span>
             </div>
             <p className="text-xs leading-relaxed">ФГБОУ ВО Омский ГАУ<br />644008, г. Омск, Институтская площадь, 1</p>
