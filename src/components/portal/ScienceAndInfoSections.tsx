@@ -153,7 +153,7 @@ export function InfographicsSection({ goHome, goBack }: NavProps) {
       <NavButtons onHome={goHome} onBack={goBack} />
       <h1 className="font-merriweather font-bold text-3xl text-deep mb-8">Инфографика</h1>
       <div className="bg-card border border-border rounded-xl p-5 mb-6">
-        <h3 className="font-merriweather font-bold text-deep mb-5 flex items-center gap-2"><Icon name="TrendingUp" size={17} className="text-primary" />Количество заявок и побед по годам</h3>
+        <h3 className="font-merriweather font-bold text-deep mb-5 flex items-center gap-2"><Icon name="TrendingUp" size={17} className="text-primary" />Количество заявок и побед</h3>
         {(() => {
           const data = [
             { year: "2025", submitted: 34, won: 5 },
