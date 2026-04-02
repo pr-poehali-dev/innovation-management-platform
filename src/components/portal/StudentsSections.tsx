@@ -24,6 +24,7 @@ export function StudentsSection({ navigate, goHome, goBack, studentsTab, setStud
     { key: "science" as const, label: "Научные мероприятия", icon: "FlaskConical" },
   ];
   const competitions = [
+    { title: "Конкурс инновационных идей", org: "ФГБОУ ВО Омский ГАУ", deadline: "01.02.2026", amount: "", desc: "Конкурс инновационных идей среди студентов и молодых учёных университета.", url: "" },
     { title: "Студенческий стартап", org: "ФСИ", deadline: "01.04.2026", amount: "1 млн ₽", desc: "Грант для студентов вузов на технологические проекты.", url: "https://drive.google.com/file/d/1w4hbPcyOEBgJlZyMZ3guBbLbJmcPzhB0/view?usp=sharing" },
     { title: "УМНИК", org: "ФСИ", deadline: "15.03.2026", amount: "до 1 млн ₽", desc: "Поддержка молодых учёных и инноваторов до 30 лет.", url: "https://drive.google.com/file/d/1DeP_OPp72TP4fYXnWhDFtxqRSg3M2Rdt/view?usp=sharing" },
     { title: "Цифровой прорыв", org: "АНО «Россия — страна возможностей»", deadline: "01.05.2026", amount: "до 500 тыс ₽", desc: "Хакатон для IT-специалистов и разработчиков.", url: "https://i.digitalproryv.ru" },
@@ -63,9 +64,11 @@ export function StudentsSection({ navigate, goHome, goBack, studentsTab, setStud
               <p className="text-xs text-muted-foreground mb-3">{c.desc}</p>
               <div className="text-xs mb-3"><span className="text-muted-foreground">до </span><span className="font-medium text-deep">{c.deadline}</span><span className="ml-2 font-semibold text-gold-dark">{c.amount}</span></div>
               <div className="flex items-center gap-2">
-                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-xs bg-primary text-white px-3 py-1.5 rounded-lg hover:bg-teal-light transition-colors flex items-center gap-1">
-                  Подробнее <Icon name="ExternalLink" size={10} />
-                </a>
+                {c.url && (
+                  <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-xs bg-primary text-white px-3 py-1.5 rounded-lg hover:bg-teal-light transition-colors flex items-center gap-1">
+                    Подробнее <Icon name="ExternalLink" size={10} />
+                  </a>
+                )}
                 <button onClick={handleQuestion} className="text-xs bg-gold text-deep px-3 py-1.5 rounded-lg hover:bg-gold/80 transition-colors flex items-center gap-1 font-medium">
                   <Icon name="MessageCircleQuestion" size={10} />Задать вопрос
                 </button>
