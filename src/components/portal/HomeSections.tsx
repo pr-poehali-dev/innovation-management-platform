@@ -36,10 +36,10 @@ export function HomeSection({ navigate }: { navigate: (s: Section) => void }) {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 flex-1">
             {[
-              { value: "34", label: "Заявок подано в 2025", icon: "FileText" },
-              { value: "5", label: "Победителей конкурсов", icon: "Trophy" },
+              { value: "34 ед.", label: "Заявок подано на инновационные конкурсы", icon: "FileText" },
+              { value: "5 чел.", label: "Победителей конкурсов", icon: "Trophy" },
               { value: "5 млн", label: "Конкурсное финансирование", icon: "Banknote" },
-              { value: "5", label: "Научные мероприятия", icon: "Rocket" },
+              { value: "5 ед.", label: "Научные мероприятия", icon: "Rocket" },
             ].map((s, i) => (
               <div key={i} className="text-center">
                 <div className="w-10 h-10 bg-teal-50 rounded-xl flex items-center justify-center mx-auto mb-2">
