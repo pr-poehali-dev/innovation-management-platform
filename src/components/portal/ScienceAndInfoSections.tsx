@@ -152,6 +152,49 @@ export function InfographicsSection({ goHome, goBack }: NavProps) {
     <div className="max-w-5xl mx-auto px-6 py-10">
       <NavButtons onHome={goHome} onBack={goBack} />
       <h1 className="font-merriweather font-bold text-3xl text-deep mb-8">Инфографика</h1>
+      <div className="bg-card border border-border rounded-xl p-5 mb-6">
+        <h3 className="font-merriweather font-bold text-deep mb-5 flex items-center gap-2"><Icon name="TrendingUp" size={17} className="text-primary" />Количество заявок и побед по годам</h3>
+        {(() => {
+          const data = [
+            { year: "2025", submitted: 34, won: 5 },
+            { year: "2026", submitted: 36, won: 0 },
+          ];
+          const maxSubmitted = Math.max(...data.map(d => d.submitted));
+          return (
+            <div className="space-y-5">
+              {data.map((d, i) => (
+                <div key={i}>
+                  <div className="text-sm font-semibold text-deep mb-2">{d.year} год</div>
+                  <div className="space-y-2">
+                    <div>
+                      <div className="flex justify-between text-xs mb-1">
+                        <span className="text-muted-foreground flex items-center gap-1"><Icon name="FileText" size={11} className="text-primary" />Подано заявок</span>
+                        <span className="font-medium text-deep">{d.submitted} ед.</span>
+                      </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden">
+                        <div className="h-full bg-primary rounded-full transition-all" style={{ width: `${(d.submitted / maxSubmitted) * 100}%` }} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between text-xs mb-1">
+                        <span className="text-muted-foreground flex items-center gap-1"><Icon name="Trophy" size={11} className="text-gold" />Выиграно конкурсов</span>
+                        <span className="font-medium text-deep">{d.won} чел.</span>
+                      </div>
+                      <div className="h-3 bg-muted rounded-full overflow-hidden">
+                        <div className="h-full bg-gold rounded-full transition-all" style={{ width: d.won > 0 ? `${(d.won / maxSubmitted) * 100}%` : "0%" }} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              <div className="flex items-center gap-4 pt-2 border-t border-border text-xs text-muted-foreground">
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-primary inline-block" />Подано заявок</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-gold inline-block" />Выиграно конкурсов</span>
+              </div>
+            </div>
+          );
+        })()}
+      </div>
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-card border border-border rounded-xl p-5">
           <h3 className="font-merriweather font-bold text-deep mb-4 flex items-center gap-2"><Icon name="BarChart3" size={17} className="text-primary" />Размеры финансирования конкурсов</h3>
