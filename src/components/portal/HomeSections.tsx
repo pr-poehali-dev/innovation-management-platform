@@ -59,15 +59,14 @@ export function HomeSection({ navigate }: { navigate: (s: Section) => void }) {
           {[
             { section: "about" as Section, icon: "Info", title: "О нас", desc: "Цели, задачи, структура" },
             { section: "news" as Section, icon: "Newspaper", title: "Новости", desc: "Актуальные события" },
+            { section: "students" as Section, icon: "Medal", title: "Конкурсы", desc: "Гранты, конкурсы, стипендии" },
             { section: "victories" as Section, icon: "Trophy", title: "Победители", desc: "Наши достижения" },
-            { section: "students" as Section, icon: "GraduationCap", title: "Студентам", desc: "Гранты, конкурсы, стипендии" },
-            { section: "science" as Section, icon: "FlaskConical", title: "Популяризация науки", desc: "Наука и бизнес" },
-            { section: "calendar" as Section, icon: "Calendar", title: "Календарь", desc: "События и дедлайны" },
-            { section: "links" as Section, icon: "Link", title: "Полезные ссылки", desc: "Ресурсы и платформы" },
+            { section: "science" as Section, icon: "FlaskConical", title: "Инновации", desc: "Наука и бизнес" },
+            { section: "partners" as Section, icon: "Handshake", title: "Партнёры", desc: "Партнёры и соратники" },
+            { section: "links" as Section, icon: "Link", title: "Ссылки", desc: "Ресурсы и платформы" },
             { section: "infographics" as Section, icon: "BarChart3", title: "Инфографика", desc: "Визуальные данные" },
-            { section: "survey" as Section, icon: "ClipboardList", title: "Анкетирование", desc: "Опросы и формы" },
+            { section: "survey" as Section, icon: "ClipboardList", title: "Анкета", desc: "Опросы и формы" },
             { section: "contacts" as Section, icon: "Phone", title: "Контакты", desc: "Как с нами связаться" },
-            { section: "partners" as Section, icon: "Handshake", title: "Наши партнёры", desc: "Партнёры и соратники" },
           ].map(card => (
             <button key={card.section} onClick={() => navigate(card.section)}
               className="bg-card border border-border rounded-xl p-4 text-left hover:border-primary/40 hover:shadow-md transition-all group hover-scale">
