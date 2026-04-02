@@ -23,7 +23,10 @@ export function StudentsSection({ navigate, goHome, goBack, studentsTab, setStud
     { key: "stipends" as const, label: "Стипендии", icon: "BookOpen" },
     { key: "science" as const, label: "Научные мероприятия", icon: "FlaskConical" },
   ];
-  const competitions = COMPETITIONS;
+  const competitions = [...COMPETITIONS].sort((a, b) => {
+    const toDate = (d: string) => { const [day, mon, year] = d.split("."); return new Date(+year, +mon - 1, +day).getTime(); };
+    return toDate(a.deadline) - toDate(b.deadline);
+  });
   const accelerators = ACCELERATORS;
   const stipends = STIPENDS;
 
