@@ -56,7 +56,7 @@ export function Header({ section, isLoggedIn, mobileMenuOpen, setMobileMenuOpen,
       </div>
       <div className="px-4 md:px-8 py-3 flex items-center justify-between gap-4">
         <button onClick={() => navigate("home")} className="flex items-center gap-3 group flex-shrink-0">
-          <img src="https://cdn.poehali.dev/files/80876a0f-278a-485e-afde-007067a34e9b.png" alt="УИиП" className="h-16 w-auto object-contain rounded-xl group-hover:scale-105 transition-transform" />
+          <img src="https://cdn.poehali.dev/files/0d251974-c62e-4e11-b3a1-17bee3ab60eb.png" alt="УИиП" className="h-16 w-auto object-cover rounded-xl group-hover:scale-105 transition-transform" />
         </button>
 
         <nav className="hidden xl:flex items-center gap-0.5 flex-wrap">
