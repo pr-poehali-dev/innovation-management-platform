@@ -380,14 +380,11 @@ export function InfographicsSection({ goHome, goBack, navigate }: NavProps) {
       <h1 className="font-merriweather font-bold text-3xl text-deep mb-8">Инфографика</h1>
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-card border border-border rounded-xl p-5">
-          <h3 className="font-merriweather font-bold text-deep mb-4 flex items-center gap-2"><Icon name="BarChart3" size={17} className="text-primary" />Размеры грантов по программам</h3>
+          <h3 className="font-merriweather font-bold text-deep mb-4 flex items-center gap-2"><Icon name="BarChart3" size={17} className="text-primary" />Размеры финансирования конкурсов</h3>
           <div className="space-y-3">
             {[
               { name: "Бизнес-старт", amount: 6, color: "bg-teal" },
-              { name: "Старт-2", amount: 5, color: "bg-teal-light" },
-              { name: "Старт-1", amount: 4, color: "bg-blue-400" },
               { name: "УМНИК", amount: 1, color: "bg-gold" },
-              { name: "Студ. стартап", amount: 1, color: "bg-amber-400" },
             ].map((g, i) => (
               <div key={i}>
                 <div className="flex justify-between text-xs mb-1">
@@ -419,17 +416,7 @@ export function InfographicsSection({ goHome, goBack, navigate }: NavProps) {
           </div>
         </div>
       </div>
-      <div className="mt-8">
-        <h2 className="font-merriweather font-bold text-lg text-deep mb-3">Программы поддержки</h2>
-        <button
-          onClick={() => navigate("infographics-detail")}
-          className="inline-flex items-center gap-2 bg-card border border-border rounded-xl px-5 py-3 text-sm font-semibold text-primary hover:border-primary/40 hover:shadow-md transition-all"
-        >
-          <Icon name="Zap" size={16} className="text-primary" />
-          Студенческий стартап
-          <Icon name="ArrowRight" size={14} />
-        </button>
-      </div>
+
     </div>
   );
 }
