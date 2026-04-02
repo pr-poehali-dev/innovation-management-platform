@@ -67,7 +67,7 @@ export default function Index() {
       case "news-detail": return <NewsDetailSection {...navProps} selectedNews={selectedNews} />;
       case "victories":   return <VictoriesSection {...navProps} victoriesFilter={victoriesFilter} setVictoriesFilter={setVictoriesFilter} filteredVictories={filteredVictories} />;
       case "calendar":    return <CalendarSection {...navProps} calendarFilter={calendarFilter} setCalendarFilter={setCalendarFilter} filteredEvents={filteredEvents} />;
-      case "students":    return <StudentsSection {...navProps} studentsTab={studentsTab} setStudentsTab={setStudentsTab} activeGrants={activeGrants} archiveGrants={archiveGrants} grantYearFilter={grantYearFilter} setGrantYearFilter={setGrantYearFilter} setSelectedGrant={setSelectedGrant} />;
+      case "students":    return <StudentsSection {...navProps} studentsTab={studentsTab} setStudentsTab={setStudentsTab} activeGrants={activeGrants} archiveGrants={archiveGrants} grantYearFilter={grantYearFilter} setGrantYearFilter={setGrantYearFilter} setSelectedGrant={setSelectedGrant} handleQuestion={handleQuestion} />;
       case "grant-detail":return <GrantDetailSection {...navProps} selectedGrant={selectedGrant} handleQuestion={handleQuestion} />;
       case "science":     return <ScienceSection {...navProps} />;
       case "links":       return <LinksSection {...navProps} />;

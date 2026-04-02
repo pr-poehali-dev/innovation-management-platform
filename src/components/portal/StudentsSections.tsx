@@ -12,9 +12,10 @@ interface StudentsSectionProps extends NavProps {
   grantYearFilter: number | "all";
   setGrantYearFilter: (v: number | "all") => void;
   setSelectedGrant: (g: GrantItem) => void;
+  handleQuestion: () => void;
 }
 
-export function StudentsSection({ navigate, goHome, goBack, studentsTab, setStudentsTab, activeGrants, archiveGrants, grantYearFilter, setGrantYearFilter, setSelectedGrant }: StudentsSectionProps) {
+export function StudentsSection({ navigate, goHome, goBack, studentsTab, setStudentsTab, activeGrants, archiveGrants, grantYearFilter, setGrantYearFilter, setSelectedGrant, handleQuestion }: StudentsSectionProps) {
   const tabs = [
     { key: "competitions" as const, label: "Конкурсы", icon: "Medal" },
     { key: "grants" as const, label: "Гранты", icon: "Banknote" },
@@ -60,11 +61,14 @@ export function StudentsSection({ navigate, goHome, goBack, studentsTab, setStud
                 <div><h3 className="font-semibold text-deep text-sm">{c.title}</h3><p className="text-xs text-muted-foreground">{c.org}</p></div>
               </div>
               <p className="text-xs text-muted-foreground mb-3">{c.desc}</p>
-              <div className="flex items-center justify-between">
-                <div className="text-xs"><span className="text-muted-foreground">до </span><span className="font-medium text-deep">{c.deadline}</span><span className="ml-2 font-semibold text-gold-dark">{c.amount}</span></div>
+              <div className="text-xs mb-3"><span className="text-muted-foreground">до </span><span className="font-medium text-deep">{c.deadline}</span><span className="ml-2 font-semibold text-gold-dark">{c.amount}</span></div>
+              <div className="flex items-center gap-2">
                 <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-xs bg-primary text-white px-3 py-1.5 rounded-lg hover:bg-teal-light transition-colors flex items-center gap-1">
                   Подробнее <Icon name="ExternalLink" size={10} />
                 </a>
+                <button onClick={handleQuestion} className="text-xs bg-gold text-deep px-3 py-1.5 rounded-lg hover:bg-gold/80 transition-colors flex items-center gap-1 font-medium">
+                  <Icon name="MessageCircleQuestion" size={10} />Задать вопрос
+                </button>
               </div>
             </div>
           ))}
