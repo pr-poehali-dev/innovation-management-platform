@@ -44,7 +44,7 @@ export default function Index() {
     } else { setLoginError("Неверный email или пароль"); }
   };
 
-  const handleQuestion = () => { if (!isLoggedIn) { navigate("login"); return; } setQuestionOpen(true); };
+  const handleQuestion = () => { setQuestionOpen(true); };
   const sendQuestion = () => {
     if (questionText.trim()) { setQuestionSent(true); setQuestionText(""); setTimeout(() => { setQuestionSent(false); setQuestionOpen(false); }, 3000); }
   };
