@@ -9,7 +9,7 @@ interface NavProps { navigate: (s: Section) => void; goHome: () => void; goBack:
 export function HomeSection({ navigate }: { navigate: (s: Section) => void }) {
   return (
     <div>
-      <section className="bg-gradient-to-br from-teal-dark via-teal to-teal-light text-white py-20 px-6 md:px-12 relative overflow-hidden">
+      <section className="from-teal-dark via-teal to-teal-light text-white py-20 px-6 md:px-12 relative overflow-hidden bg-cyan-200">
         <div className="absolute top-10 right-16 w-72 h-72 rounded-full bg-gold/10 blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-56 h-56 rounded-full bg-white/5 blur-3xl pointer-events-none" />
         <div className="max-w-4xl mx-auto relative">
