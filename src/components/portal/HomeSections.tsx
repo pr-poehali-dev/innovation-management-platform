@@ -29,21 +29,27 @@ export function HomeSection({ navigate }: { navigate: (s: Section) => void }) {
       </section>
 
       <section className="bg-white border-b border-border">
-        <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { value: "34", label: "Заявок подано в 2025", icon: "FileText" },
-            { value: "5", label: "Победителей конкурсов", icon: "Trophy" },
-            { value: "5 млн", label: "Конкурсное финансирование", icon: "Banknote" },
-            { value: "5", label: "Научные мероприятия", icon: "Rocket" },
-          ].map((s, i) => (
-            <div key={i} className="text-center">
-              <div className="w-10 h-10 bg-teal-50 rounded-xl flex items-center justify-center mx-auto mb-2">
-                <Icon name={s.icon} size={18} className="text-primary" />
+        <div className="max-w-6xl mx-auto px-6 py-8 flex gap-8 items-center">
+          <div className="hidden md:flex flex-col items-center justify-center flex-shrink-0 pr-8 border-r border-border">
+            <span className="font-merriweather font-black text-7xl leading-none text-primary">2025</span>
+            <span className="font-merriweather font-bold text-2xl text-deep mt-1">год</span>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 flex-1">
+            {[
+              { value: "34", label: "Заявок подано в 2025", icon: "FileText" },
+              { value: "5", label: "Победителей конкурсов", icon: "Trophy" },
+              { value: "5 млн", label: "Конкурсное финансирование", icon: "Banknote" },
+              { value: "5", label: "Научные мероприятия", icon: "Rocket" },
+            ].map((s, i) => (
+              <div key={i} className="text-center">
+                <div className="w-10 h-10 bg-teal-50 rounded-xl flex items-center justify-center mx-auto mb-2">
+                  <Icon name={s.icon} size={18} className="text-primary" />
+                </div>
+                <div className="font-merriweather font-bold text-2xl text-deep">{s.value}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
               </div>
-              <div className="font-merriweather font-bold text-2xl text-deep">{s.value}</div>
-              <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
