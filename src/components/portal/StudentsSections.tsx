@@ -1,6 +1,6 @@
 import Icon from "@/components/ui/icon";
 import { NavButtons, Breadcrumb } from "./LayoutComponents";
-import { Section, GrantItem, EVENTS } from "./types";
+import { Section, GrantItem, COMPETITIONS, ACCELERATORS, STIPENDS, SCIENCE_EVENTS } from "./types";
 
 interface NavProps { navigate: (s: Section) => void; goHome: () => void; goBack: () => void; }
 
@@ -23,22 +23,9 @@ export function StudentsSection({ navigate, goHome, goBack, studentsTab, setStud
     { key: "stipends" as const, label: "Стипендии", icon: "BookOpen" },
     { key: "science" as const, label: "Научные мероприятия", icon: "FlaskConical" },
   ];
-  const competitions = [
-    { title: "Конкурс инновационных идей", org: "ФГБОУ ВО Омский ГАУ", deadline: "01.02.2026", amount: "", desc: "Конкурс инновационных идей среди студентов и молодых учёных университета.", url: "" },
-    { title: "Студенческий стартап", org: "ФСИ", deadline: "01.04.2026", amount: "1 млн ₽", desc: "Грант для студентов вузов на технологические проекты.", url: "https://drive.google.com/file/d/1w4hbPcyOEBgJlZyMZ3guBbLbJmcPzhB0/view?usp=sharing" },
-    { title: "УМНИК", org: "ФСИ", deadline: "15.03.2026", amount: "до 1 млн ₽", desc: "Поддержка молодых учёных и инноваторов до 30 лет.", url: "https://drive.google.com/file/d/1DeP_OPp72TP4fYXnWhDFtxqRSg3M2Rdt/view?usp=sharing" },
-    { title: "Цифровой прорыв", org: "АНО «Россия — страна возможностей»", deadline: "01.05.2026", amount: "до 500 тыс ₽", desc: "Хакатон для IT-специалистов и разработчиков.", url: "https://i.digitalproryv.ru" },
-    { title: "Я — профессионал", org: "Яндекс / НИУ ВШЭ", deadline: "01.03.2026", amount: "стажировка + 200 тыс ₽", desc: "Многопрофильная олимпиада для студентов.", url: "https://yandex.ru/profi" },
-  ];
-  const accelerators = [
-    { title: "Акселератор ОмГАУ AgriTech", duration: "12 недель", format: "Очно", desc: "Для агротех стартапов: менторство, финансирование, выход на рынок." },
-    { title: "ФРИИ Акселератор", duration: "10 недель", format: "Онлайн/Офлайн", desc: "Топ акселератор для технологических стартапов в России." },
-    { title: "Сколково Акселератор", duration: "6 месяцев", format: "Москва + онлайн", desc: "Для стартапов с инновационными технологиями." },
-  ];
-  const stipends = [
-    { title: "Стипендия Президента РФ", amount: "22 800 ₽/мес", req: "Достижения в науке и спорте" },
-    { title: "Стипендия Правительства РФ", amount: "14 400 ₽/мес", req: "Приоритетные специальности" },
-  ];
+  const competitions = COMPETITIONS;
+  const accelerators = ACCELERATORS;
+  const stipends = STIPENDS;
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
@@ -157,8 +144,8 @@ export function StudentsSection({ navigate, goHome, goBack, studentsTab, setStud
 
       {studentsTab === "science" && (
         <div className="space-y-3">
-          {EVENTS.filter(e => e.type === "event").map(e => (
-            <div key={e.id} className="bg-card border border-border rounded-xl p-5 hover:shadow-sm transition-shadow">
+          {SCIENCE_EVENTS.map((e, i) => (
+            <div key={i} className="bg-card border border-border rounded-xl p-5 hover:shadow-sm transition-shadow">
               <div className="flex items-start justify-between gap-4">
                 <div><h3 className="font-semibold text-deep text-sm">{e.title}</h3><p className="text-sm text-muted-foreground mt-1">{e.description}</p></div>
                 <div className="text-xs text-muted-foreground flex-shrink-0">{e.date.split("-").reverse().join(".")}</div>

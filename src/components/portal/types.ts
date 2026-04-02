@@ -20,11 +20,82 @@ export interface GrantItem {
   year: number; description: string; requirements: string[]; active: boolean;
 }
 
-// ─── Mock Data ────────────────────────────────────────────────────────────────
+// ─── Students data (single source of truth for calendar) ──────────────────────
+export interface CompetitionItem {
+  title: string; org: string; deadline: string; amount: string; desc: string; url: string;
+}
+export interface AcceleratorItem {
+  title: string; duration: string; format: string; desc: string; startDate?: string;
+}
+export interface StipendItem {
+  title: string; amount: string; req: string; deadline?: string;
+}
+export interface ScienceEventItem {
+  title: string; date: string; description: string;
+}
+
+export const COMPETITIONS: CompetitionItem[] = [
+  { title: "Конкурс инновационных идей", org: "ФГБОУ ВО Омский ГАУ", deadline: "01.02.2026", amount: "", desc: "Конкурс инновационных идей среди студентов и молодых учёных университета.", url: "" },
+  { title: "Студенческий стартап", org: "ФСИ", deadline: "01.04.2026", amount: "1 млн ₽", desc: "Грант для студентов вузов на технологические проекты.", url: "https://drive.google.com/file/d/1w4hbPcyOEBgJlZyMZ3guBbLbJmcPzhB0/view?usp=sharing" },
+  { title: "УМНИК", org: "ФСИ", deadline: "15.03.2026", amount: "до 1 млн ₽", desc: "Поддержка молодых учёных и инноваторов до 30 лет.", url: "https://drive.google.com/file/d/1DeP_OPp72TP4fYXnWhDFtxqRSg3M2Rdt/view?usp=sharing" },
+  { title: "Цифровой прорыв", org: "АНО «Россия — страна возможностей»", deadline: "01.05.2026", amount: "до 500 тыс ₽", desc: "Хакатон для IT-специалистов и разработчиков.", url: "https://i.digitalproryv.ru" },
+  { title: "Я — профессионал", org: "Яндекс / НИУ ВШЭ", deadline: "01.03.2026", amount: "стажировка + 200 тыс ₽", desc: "Многопрофильная олимпиада для студентов.", url: "https://yandex.ru/profi" },
+];
+
+export const ACCELERATORS: AcceleratorItem[] = [
+  { title: "Акселератор ОмГАУ AgriTech", duration: "12 недель", format: "Очно", desc: "Для агротех стартапов: менторство, финансирование, выход на рынок.", startDate: "2026-09-01" },
+  { title: "ФРИИ Акселератор", duration: "10 недель", format: "Онлайн/Офлайн", desc: "Топ акселератор для технологических стартапов в России.", startDate: "2026-10-01" },
+  { title: "Сколково Акселератор", duration: "6 месяцев", format: "Москва + онлайн", desc: "Для стартапов с инновационными технологиями.", startDate: "2026-11-01" },
+];
+
+export const STIPENDS: StipendItem[] = [
+  { title: "Стипендия Президента РФ", amount: "22 800 ₽/мес", req: "Достижения в науке и спорте", deadline: "01.10.2026" },
+  { title: "Стипендия Правительства РФ", amount: "14 400 ₽/мес", req: "Приоритетные специальности", deadline: "01.11.2026" },
+];
+
+export const SCIENCE_EVENTS: ScienceEventItem[] = [
+  { title: "Всероссийская конференция AgriTech", date: "2026-05-20", description: "Научно-практическая конференция по агротехнологиям." },
+  { title: "Форум молодых учёных ОмГАУ", date: "2026-04-15", description: "Ежегодный форум для студентов и аспирантов." },
+];
+
+// ─── Helper: convert dd.mm.yyyy → yyyy-mm-dd ──────────────────────────────────
+const toISODate = (d: string) => {
+  const [day, month, year] = d.split(".");
+  return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+};
+
+// ─── EVENTS — auto-generated from all student data ────────────────────────────
 export const EVENTS: CalendarEvent[] = [
-  { id: 1, title: "УМНИК — приём заявок", date: "2026-03-15", type: "grant", deadline: "2026-03-15", description: "Программа поддержки молодых учёных до 30 лет. Грант до 1 млн руб." },
-  { id: 2, title: "Студенческий стартап — 2026", date: "2026-04-01", type: "competition", deadline: "2026-04-01", description: "Конкурс проектов среди студентов вузов РФ. Грант 1 млн руб." },
-  { id: 4, title: "Старт-1 — подача заявок", date: "2026-05-10", type: "grant", deadline: "2026-05-10", description: "Коммерциализация разработок. Первая стадия." },
+  ...COMPETITIONS.filter(c => c.deadline).map((c, i) => ({
+    id: 100 + i,
+    title: c.title,
+    date: toISODate(c.deadline),
+    type: "competition" as EventType,
+    deadline: toISODate(c.deadline),
+    description: `${c.desc}${c.amount ? " Размер: " + c.amount : ""}`,
+  })),
+  ...ACCELERATORS.filter(a => a.startDate).map((a, i) => ({
+    id: 200 + i,
+    title: a.title,
+    date: a.startDate!,
+    type: "event" as EventType,
+    description: `${a.desc} Формат: ${a.format}. Длительность: ${a.duration}.`,
+  })),
+  ...STIPENDS.filter(s => s.deadline).map((s, i) => ({
+    id: 300 + i,
+    title: s.title,
+    date: toISODate(s.deadline!),
+    type: "grant" as EventType,
+    deadline: toISODate(s.deadline!),
+    description: `${s.req}. Размер: ${s.amount}.`,
+  })),
+  ...SCIENCE_EVENTS.map((e, i) => ({
+    id: 400 + i,
+    title: e.title,
+    date: e.date,
+    type: "event" as EventType,
+    description: e.description,
+  })),
 ];
 
 export const GRANTS: GrantItem[] = [
