@@ -383,8 +383,8 @@ export function InfographicsSection({ goHome, goBack, navigate }: NavProps) {
           <h3 className="font-merriweather font-bold text-deep mb-4 flex items-center gap-2"><Icon name="BarChart3" size={17} className="text-primary" />Размеры финансирования конкурсов</h3>
           <div className="space-y-3">
             {[
-              { name: "Бизнес-старт", amount: 6, color: "bg-teal" },
               { name: "УМНИК", amount: 1, color: "bg-gold" },
+              { name: "Студ. стартап", amount: 1, color: "bg-amber-400" },
             ].map((g, i) => (
               <div key={i}>
                 <div className="flex justify-between text-xs mb-1">
