@@ -18,7 +18,7 @@ interface StudentsSectionProps extends NavProps {
 export function StudentsSection({ navigate, goHome, goBack, studentsTab, setStudentsTab, activeGrants, archiveGrants, grantYearFilter, setGrantYearFilter, setSelectedGrant, handleQuestion }: StudentsSectionProps) {
   const tabs = [
     { key: "competitions" as const, label: "Конкурсы", icon: "Medal" },
-    { key: "grants" as const, label: "Гранты", icon: "Banknote" },
+    { key: "grants" as const, label: "Темы заявок", icon: "Banknote" },
     { key: "accelerators" as const, label: "Акселераторы", icon: "Rocket" },
     { key: "stipends" as const, label: "Стипендии", icon: "BookOpen" },
     { key: "science" as const, label: "Научные мероприятия", icon: "FlaskConical" },
@@ -100,7 +100,7 @@ export function StudentsSection({ navigate, goHome, goBack, studentsTab, setStud
             </div>
           ))}
           <div className="mt-8 pt-6 border-t border-border">
-            <h3 className="font-merriweather font-bold text-deep mb-4 flex items-center gap-2"><Icon name="Archive" size={17} className="text-muted-foreground" />Архив грантов</h3>
+            <h3 className="font-merriweather font-bold text-deep mb-4 flex items-center gap-2"><Icon name="Archive" size={17} className="text-muted-foreground" />Архив тем заявок</h3>
             <div className="flex gap-2 flex-wrap mb-3">
               {(["all", 2025, 2024, 2023] as const).map(y => (
                 <button key={y} onClick={() => setGrantYearFilter(y)}
