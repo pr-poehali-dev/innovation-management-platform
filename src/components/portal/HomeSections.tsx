@@ -305,7 +305,7 @@ export function CalendarSection({ goHome, goBack, calendarFilter, setCalendarFil
       <NavButtons onHome={goHome} onBack={goBack} />
       <h1 className="font-merriweather font-bold text-3xl text-deep mb-6">Интерактивный календарь событий</h1>
       <div className="flex gap-2 flex-wrap mb-6">
-        {([["all", "Все события"], ["competition", "Конкурсы"], ["grant", "Гранты"], ["event", "Мероприятия"]] as const).map(([val, label]) => (
+        {([["all", "Все события"], ["competition", "Конкурсы"], ["grant", "Стипендии"], ["event", "Мероприятия"]] as const).map(([val, label]) => (
           <button key={val} onClick={() => setCalendarFilter(val as EventType | "all")}
             className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${calendarFilter === val ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-secondary"}`}>
             {label}
