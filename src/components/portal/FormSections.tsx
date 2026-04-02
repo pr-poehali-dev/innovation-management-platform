@@ -78,10 +78,10 @@ export function ContactsSection({ goHome, goBack }: NavProps) {
         <div className="bg-card border border-border rounded-xl p-6">
           <h3 className="font-merriweather font-bold text-deep mb-4">Написать нам</h3>
           <div className="space-y-3">
+            <div><label className="text-xs font-medium text-deep mb-1 block">Сообщение</label><textarea placeholder="Ваш вопрос или предложение..." className="w-full border border-border rounded-lg px-3 py-2 text-sm resize-none h-24 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" /></div>
             {[{ l: "Имя", p: "Ваше имя" }, { l: "Email", p: "Email для ответа" }].map((f, i) => (
               <div key={i}><label className="text-xs font-medium text-deep mb-1 block">{f.l}</label><input placeholder={f.p} className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" /></div>
             ))}
-            <div><label className="text-xs font-medium text-deep mb-1 block">Сообщение</label><textarea placeholder="Ваш вопрос или предложение..." className="w-full border border-border rounded-lg px-3 py-2 text-sm resize-none h-24 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" /></div>
             <button className="w-full bg-primary text-primary-foreground py-2.5 rounded-lg font-medium hover:bg-teal-light transition-colors">Отправить сообщение</button>
           </div>
         </div>
