@@ -87,7 +87,7 @@ export function HomeSection({ navigate }: { navigate: (s: Section) => void }) {
             <button onClick={() => navigate("news")} className="text-primary text-sm hover:underline flex items-center gap-1">Все новости<Icon name="ArrowRight" size={13} /></button>
           </div>
           <div className="grid md:grid-cols-3 gap-4">
-            {NEWS.slice(0, 3).map(n => (
+            {[...NEWS].sort((a, b) => b.id - a.id).slice(0, 3).map(n => (
               <div key={n.id} className="bg-card rounded-xl border border-border p-5 hover:shadow-md transition-shadow">
                 <span className="text-xs bg-teal-50 text-primary px-2 py-0.5 rounded-full font-medium">{n.tag}</span>
                 <h3 className="font-semibold text-sm text-deep mt-2 mb-1 leading-snug">{n.title}</h3>
