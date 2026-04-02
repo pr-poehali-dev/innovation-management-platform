@@ -66,7 +66,7 @@ export function ContactsSection({ goHome, goBack }: NavProps) {
             { icon: "Building", label: "Организация", value: "ФГБОУ ВО ОмГАУ им. П.А. Столыпина" },
             { icon: "MapPin", label: "Адрес", value: "644008, г. Омск, Институтская площадь, 1" },
             { icon: "Phone", label: "Телефон", value: "+7 (3812) 65-10-88" },
-            { icon: "Mail", label: "E-mail", value: "is.ryzhova@omgau.org" },
+            { icon: "Mail", label: "E-mail", value: "ov.kosenchuk@omgau.org" },
             { icon: "Globe", label: "Сайт ОмГАУ", value: "omgau.org" },
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-3">
@@ -127,7 +127,7 @@ export function LoginSection({ goHome, goBack, loginForm, setLoginForm, loginErr
         <div className="space-y-3">
           <div>
             <label className="text-xs font-medium text-deep mb-1 block">Email</label>
-            <input type="email" value={loginForm.email} onChange={e => setLoginForm({ ...loginForm, email: e.target.value })} placeholder="is.ryzhova@omgau.org"
+            <input type="email" value={loginForm.email} onChange={e => setLoginForm({ ...loginForm, email: e.target.value })} placeholder="ov.kosenchuk@omgau.org"
               className="w-full border border-border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" />
           </div>
           <div>
