@@ -8,10 +8,10 @@ export function ScienceSection({ goHome, goBack }: NavProps) {
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
       <NavButtons onHome={goHome} onBack={goBack} />
-      <h1 className="font-merriweather font-bold text-3xl text-deep mb-8">Популяризация науки</h1>
+      <h1 className="font-merriweather font-bold text-3xl text-deep mb-8">Инновации</h1>
       <div className="grid md:grid-cols-3 gap-4">
         {[
-          { icon: "BookOpen", title: "Каталог инновационных разработок", desc: "Реестр технологий и разработок ОмГАУ, доступных для трансфера бизнесу.", items: ["Агробиотехнологии", "Цифровые решения", "Экотехнологии"] },
+          { icon: "BookOpen", title: "Каталог инновационных разработок", desc: "Реестр технологий и разработок Омского ГАУ, доступных для трансфера бизнесу.", items: ["Агробиотехнологии", "Цифровые решения", "Экотехнологии"] },
           { icon: "FileBarChart", title: "Информационно-аналитический бюллетень", desc: "Ежеквартальный аналитический обзор инновационной деятельности университета.", items: ["Статистика по грантам", "Обзор технологий", "Партнёрские новости"] },
         ].map((item, i) => (
           <div key={i} className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-md transition-shadow">
