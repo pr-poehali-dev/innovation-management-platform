@@ -404,8 +404,6 @@ export function InfographicsSection({ goHome, goBack, navigate }: NavProps) {
             {[
               { prog: "УМНИК", period: "2 раза в год", months: "Март, Сентябрь" },
               { prog: "Студ. стартап", period: "1 раз в год", months: "Январь–Апрель" },
-              { prog: "Старт-1/2", period: "1 раз в год", months: "Апрель–Июнь" },
-              { prog: "Бизнес-старт", period: "1 раз в год", months: "Сентябрь–Ноябрь" },
             ].map((row, i) => (
               <div key={i} className="flex items-center gap-3 p-2.5 bg-muted rounded-lg text-sm">
                 <Icon name="Repeat" size={12} className="text-primary flex-shrink-0" />
