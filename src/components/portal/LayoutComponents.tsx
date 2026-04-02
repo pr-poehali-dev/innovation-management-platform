@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import { Section, NAV_ITEMS } from "./types";
 
@@ -153,6 +154,8 @@ interface QuestionDialogProps {
 }
 
 export function QuestionDialog({ questionOpen, questionText, questionSent, setQuestionOpen, setQuestionText, sendQuestion }: QuestionDialogProps) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   if (!questionOpen) return null;
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setQuestionOpen(false)}>
@@ -167,18 +170,31 @@ export function QuestionDialog({ questionOpen, questionText, questionSent, setQu
               <Icon name="CheckCircle" size={28} className="text-primary" />
             </div>
             <p className="font-medium text-deep">Вопрос отправлен!</p>
-            <p className="text-sm text-muted-foreground mt-1">Ответ придёт на почту is.ryzhova@omgau.org</p>
+            <p className="text-sm text-muted-foreground mt-1">Ответ придёт на почту ov.kosenchuk@omgau.org</p>
           </div>
         ) : (
-          <>
-            <textarea value={questionText} onChange={e => setQuestionText(e.target.value)}
-              placeholder="Введите ваш вопрос..."
-              className="w-full border border-border rounded-lg p-3 text-sm resize-none h-28 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" />
+          <div className="space-y-3">
+            <div>
+              <label className="text-xs font-medium text-deep mb-1 block">Сообщение</label>
+              <textarea value={questionText} onChange={e => setQuestionText(e.target.value)}
+                placeholder="Введите ваш вопрос..."
+                className="w-full border border-border rounded-lg p-3 text-sm resize-none h-28 focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" />
+            </div>
+            <div>
+              <label className="text-xs font-medium text-deep mb-1 block">Имя</label>
+              <input value={name} onChange={e => setName(e.target.value)} placeholder="Ваше имя"
+                className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" />
+            </div>
+            <div>
+              <label className="text-xs font-medium text-deep mb-1 block">Email</label>
+              <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email для ответа"
+                className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" />
+            </div>
             <button onClick={sendQuestion} disabled={!questionText.trim()}
-              className="mt-3 w-full bg-primary text-primary-foreground py-2.5 rounded-lg text-sm font-medium hover:bg-teal-light transition-colors disabled:opacity-40">
-              Отправить
+              className="w-full bg-primary text-primary-foreground py-2.5 rounded-lg text-sm font-medium hover:bg-teal-light transition-colors disabled:opacity-40">
+              Отправить сообщение
             </button>
-          </>
+          </div>
         )}
       </div>
     </div>
