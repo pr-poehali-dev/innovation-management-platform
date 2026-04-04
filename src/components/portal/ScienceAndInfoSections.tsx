@@ -51,6 +51,7 @@ export function LinksSection({ goHome, goBack }: NavProps) {
             { title: "Госуслуги", url: "https://gosuslugi.ru", desc: "Государственные услуги онлайн" },
             { title: "Сколково", url: "https://sk.ru", desc: "Инновационный центр" },
             { title: "Invest.ru", url: "https://invest.ru", desc: "Инвестиционный портал России" },
+            { title: "Платформа НТИ", url: "https://nti2035.ru/", desc: "Национальная технологическая инициатива" },
           ]},
         ].map((cat, ci) => (
           <div key={ci} className="bg-card border border-border rounded-xl overflow-hidden">
