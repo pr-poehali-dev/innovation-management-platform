@@ -1,3 +1,4 @@
+import { useState, useMemo } from "react";
 import Icon from "@/components/ui/icon";
 import { NavButtons } from "./LayoutComponents";
 import { Section, EventType, CalendarEvent, GrantItem, NewsItem, EVENTS, NEWS, VICTORIES, typeLabel, typeBadgeColor } from "./types";
@@ -298,6 +299,109 @@ export function VictoriesSection({ goHome, goBack, victoriesFilter, setVictories
   );
 }
 
+// ─── MiniCalendar ─────────────────────────────────────────────────────────────
+const MONTHS_RU = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
+const DAYS_RU = ["Вс","Пн","Вт","Ср","Чт","Пт","Сб"];
+const TYPE_DOT: Record<EventType, string> = { competition: "bg-blue-500", grant: "bg-teal-500", event: "bg-amber-500" };
+
+function MiniCalendar({ events, selectedRange, onRangeChange }: {
+  events: CalendarEvent[];
+  selectedRange: [string | null, string | null];
+  onRangeChange: (range: [string | null, string | null]) => void;
+}) {
+  const today = new Date();
+  const [viewYear, setViewYear] = useState(today.getFullYear());
+  const [viewMonth, setViewMonth] = useState(today.getMonth());
+
+  const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+  const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+  const blanks = firstDay;
+
+  const eventsByDate = useMemo(() => {
+    const map: Record<string, EventType[]> = {};
+    events.forEach(e => {
+      if (!map[e.date]) map[e.date] = [];
+      if (!map[e.date].includes(e.type)) map[e.date].push(e.type);
+    });
+    return map;
+  }, [events]);
+
+  const fmtDate = (y: number, m: number, d: number) =>
+    `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+
+  const handleDayClick = (day: number) => {
+    const date = fmtDate(viewYear, viewMonth, day);
+    const [s, e] = selectedRange;
+    if (!s || (s && e)) { onRangeChange([date, null]); }
+    else if (date < s) { onRangeChange([date, s]); }
+    else if (date === s) { onRangeChange([null, null]); }
+    else { onRangeChange([s, date]); }
+  };
+
+  const isInRange = (day: number) => {
+    const [s, e] = selectedRange;
+    const d = fmtDate(viewYear, viewMonth, day);
+    if (s && e) return d >= s && d <= e;
+    return false;
+  };
+  const isStart = (day: number) => fmtDate(viewYear, viewMonth, day) === selectedRange[0];
+  const isEnd = (day: number) => fmtDate(viewYear, viewMonth, day) === selectedRange[1];
+  const isToday = (day: number) => fmtDate(viewYear, viewMonth, day) === fmtDate(today.getFullYear(), today.getMonth(), today.getDate());
+
+  const prevMonth = () => { if (viewMonth === 0) { setViewMonth(11); setViewYear(y => y - 1); } else setViewMonth(m => m - 1); };
+  const nextMonth = () => { if (viewMonth === 11) { setViewMonth(0); setViewYear(y => y + 1); } else setViewMonth(m => m + 1); };
+
+  const cells = [...Array(blanks).fill(null), ...Array(daysInMonth).fill(0).map((_, i) => i + 1)];
+
+  return (
+    <div className="bg-card border border-border rounded-2xl p-4 w-full">
+      <div className="flex items-center justify-between mb-3">
+        <button onClick={prevMonth} className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-muted transition-colors"><Icon name="ChevronLeft" size={15} /></button>
+        <span className="text-sm font-semibold text-deep">{MONTHS_RU[viewMonth]} {viewYear}</span>
+        <button onClick={nextMonth} className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-muted transition-colors"><Icon name="ChevronRight" size={15} /></button>
+      </div>
+      <div className="grid grid-cols-7 mb-1">
+        {DAYS_RU.map(d => <div key={d} className="text-center text-xs text-muted-foreground py-1 font-medium">{d}</div>)}
+      </div>
+      <div className="grid grid-cols-7 gap-y-0.5">
+        {cells.map((day, i) => {
+          if (!day) return <div key={`b-${i}`} />;
+          const dateStr = fmtDate(viewYear, viewMonth, day);
+          const dots = eventsByDate[dateStr] ?? [];
+          const inRange = isInRange(day);
+          const start = isStart(day);
+          const end = isEnd(day);
+          const todayMark = isToday(day);
+          return (
+            <button key={day} onClick={() => handleDayClick(day)}
+              className={`relative flex flex-col items-center justify-center h-9 w-full text-xs rounded-lg transition-colors
+                ${start || end ? "bg-gold text-deep font-bold" : inRange ? "bg-gold/20 text-deep rounded-none" : todayMark ? "border border-primary text-primary font-semibold" : "hover:bg-muted text-foreground"}`}>
+              {day}
+              {dots.length > 0 && (
+                <div className="flex gap-0.5 mt-0.5">
+                  {dots.map(t => <span key={t} className={`w-1 h-1 rounded-full ${TYPE_DOT[t]}`} />)}
+                </div>
+              )}
+            </button>
+          );
+        })}
+      </div>
+      {selectedRange[0] && (
+        <button onClick={() => onRangeChange([null, null])} className="mt-3 w-full text-xs text-muted-foreground hover:text-primary transition-colors flex items-center justify-center gap-1">
+          <Icon name="X" size={11} />Сбросить выбор
+        </button>
+      )}
+      <div className="flex gap-3 mt-3 pt-3 border-t border-border justify-center">
+        {([["competition", "Конкурсы", "bg-blue-500"], ["grant", "Стипендии", "bg-teal-500"], ["event", "Мероприятия", "bg-amber-500"]] as const).map(([, label, cls]) => (
+          <div key={label} className="flex items-center gap-1 text-xs text-muted-foreground">
+            <span className={`w-2 h-2 rounded-full ${cls}`} />{label}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ─── CalendarSection ──────────────────────────────────────────────────────────
 interface CalendarSectionProps extends NavProps {
   calendarFilter: EventType | "all";
@@ -306,6 +410,15 @@ interface CalendarSectionProps extends NavProps {
 }
 
 export function CalendarSection({ goHome, goBack, calendarFilter, setCalendarFilter, filteredEvents }: CalendarSectionProps) {
+  const [dateRange, setDateRange] = useState<[string | null, string | null]>([null, null]);
+
+  const displayEvents = useMemo(() => {
+    const [s, e] = dateRange;
+    if (!s) return filteredEvents;
+    const end = e ?? s;
+    return filteredEvents.filter(ev => ev.date >= s && ev.date <= end);
+  }, [filteredEvents, dateRange]);
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
       <NavButtons onHome={goHome} onBack={goBack} />
@@ -318,24 +431,38 @@ export function CalendarSection({ goHome, goBack, calendarFilter, setCalendarFil
           </button>
         ))}
       </div>
-      <div className="space-y-3">
-        {filteredEvents.map(ev => (
-          <div key={ev.id} className="flex items-start gap-4 bg-card border border-border rounded-xl p-5 hover:shadow-md transition-shadow">
-            <div className={`w-12 h-12 rounded-xl flex flex-col items-center justify-center flex-shrink-0 text-white ${ev.type === "grant" ? "bg-teal" : ev.type === "competition" ? "bg-blue-500" : "bg-amber-500"}`}>
-              <span className="text-sm font-bold leading-none">{ev.date.split("-")[2]}</span>
-              <span className="text-xs leading-none opacity-80">{["", "янв", "фев", "мар", "апр", "май", "июн", "июл", "авг", "сен", "окт", "ноя", "дек"][parseInt(ev.date.split("-")[1])]}</span>
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-1 flex-wrap">
-                <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${typeBadgeColor(ev.type)}`}>{typeLabel(ev.type)}</span>
-                {ev.deadline && <span className="text-xs text-red-500 flex items-center gap-1"><Icon name="Clock" size={10} />Дедлайн: {ev.deadline.split("-").reverse().join(".")}</span>}
+      <div className="flex gap-6 items-start flex-col lg:flex-row">
+        <div className="w-full lg:w-72 flex-shrink-0">
+          <MiniCalendar events={filteredEvents} selectedRange={dateRange} onRangeChange={setDateRange} />
+          {dateRange[0] && (
+            <p className="text-xs text-muted-foreground mt-2 text-center">
+              {dateRange[1]
+                ? `${dateRange[0].split("-").reverse().join(".")} — ${dateRange[1].split("-").reverse().join(".")}`
+                : `Выбрана дата: ${dateRange[0].split("-").reverse().join(".")}`}
+            </p>
+          )}
+        </div>
+        <div className="flex-1 space-y-3 w-full">
+          {displayEvents.length === 0 && (
+            <div className="text-center py-10 text-muted-foreground text-sm">Событий в выбранном периоде нет</div>
+          )}
+          {displayEvents.map(ev => (
+            <div key={ev.id} className="flex items-start gap-4 bg-card border border-border rounded-xl p-5 hover:shadow-md transition-shadow">
+              <div className={`w-12 h-12 rounded-xl flex flex-col items-center justify-center flex-shrink-0 text-white ${ev.type === "grant" ? "bg-teal-500" : ev.type === "competition" ? "bg-blue-500" : "bg-amber-500"}`}>
+                <span className="text-sm font-bold leading-none">{ev.date.split("-")[2]}</span>
+                <span className="text-xs leading-none opacity-80">{["", "янв", "фев", "мар", "апр", "май", "июн", "июл", "авг", "сен", "окт", "ноя", "дек"][parseInt(ev.date.split("-")[1])]}</span>
               </div>
-              <h3 className="font-semibold text-deep">{ev.title}</h3>
-              <p className="text-sm text-muted-foreground mt-0.5">{ev.description}</p>
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-1 flex-wrap">
+                  <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${typeBadgeColor(ev.type)}`}>{typeLabel(ev.type)}</span>
+                  {ev.deadline && <span className="text-xs text-red-500 flex items-center gap-1"><Icon name="Clock" size={10} />Дедлайн: {ev.deadline.split("-").reverse().join(".")}</span>}
+                </div>
+                <h3 className="font-semibold text-deep">{ev.title}</h3>
+                <p className="text-sm text-muted-foreground mt-0.5">{ev.description}</p>
+              </div>
             </div>
-            <Icon name="Bell" size={15} className="text-muted-foreground flex-shrink-0 mt-1 cursor-pointer hover:text-primary transition-colors" />
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
