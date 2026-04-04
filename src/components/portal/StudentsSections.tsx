@@ -10,11 +10,12 @@ function GrantsTab({ activeGrants, archiveGrants, grantYearFilter, setGrantYearF
   setGrantYearFilter: (v: number | "all") => void; setSelectedGrant: (g: GrantItem) => void;
   navigate: (s: Section) => void;
 }) {
-  const [archiveProgram, setArchiveProgram] = useState<"all" | "УМНИК" | "Студенческий стартап">("all");
-  const archiveYears = [...new Set(archiveGrants.map(g => g.year))].sort((a, b) => b - a);
+  const [archiveProgram, setArchiveProgram] = useState<"УМНИК" | "Студенческий стартап">("УМНИК");
+  const archiveYears = [...new Set(archiveGrants.filter(g => g.title === archiveProgram).map(g => g.year))].sort((a, b) => b - a);
+  const selectedYear = archiveYears.includes(grantYearFilter as number) ? grantYearFilter : archiveYears[0];
   const filteredArchive = archiveGrants
-    .filter(g => grantYearFilter === "all" || g.year === grantYearFilter)
-    .filter(g => archiveProgram === "all" || g.title === archiveProgram);
+    .filter(g => g.title === archiveProgram)
+    .filter(g => selectedYear === "all" || g.year === selectedYear);
 
   return (
     <div className="space-y-4">
@@ -50,18 +51,18 @@ function GrantsTab({ activeGrants, archiveGrants, grantYearFilter, setGrantYearF
       <div className="mt-8 pt-6 border-t border-border">
         <h3 className="font-merriweather font-bold text-deep mb-4 flex items-center gap-2"><Icon name="Archive" size={17} className="text-muted-foreground" />Архив тем заявок</h3>
         <div className="flex gap-2 flex-wrap mb-3">
-          {(["all", "УМНИК", "Студенческий стартап"] as const).map(p => (
+          {(["УМНИК", "Студенческий стартап"] as const).map(p => (
             <button key={p} onClick={() => setArchiveProgram(p)}
               className={`px-3 py-1 rounded text-xs font-medium transition-colors ${archiveProgram === p ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-secondary"}`}>
-              {p === "all" ? "Все программы" : p}
+              {p}
             </button>
           ))}
         </div>
         <div className="flex gap-2 flex-wrap mb-4">
-          {(["all", ...archiveYears] as const).map(y => (
-            <button key={y} onClick={() => setGrantYearFilter(y as number | "all")}
+          {archiveYears.map(y => (
+            <button key={y} onClick={() => setGrantYearFilter(y)}
               className={`px-3 py-1 rounded text-xs transition-colors ${grantYearFilter === y ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-secondary"}`}>
-              {y === "all" ? "Все годы" : y}
+              {y}
             </button>
           ))}
         </div>

@@ -169,7 +169,7 @@ export function NewsSection({ goHome, goBack, navigate, setSelectedNews }: NewsS
       <NavButtons onHome={goHome} onBack={goBack} />
       <h1 className="font-merriweather font-bold text-3xl text-deep mb-8">Новости</h1>
       <div className="space-y-4">
-        {NEWS.map(n => (
+        {[...NEWS].sort((a, b) => b.id - a.id).map(n => (
           <article
             key={n.id}
             onClick={() => handleClick(n)}
