@@ -43,7 +43,6 @@ export const COMPETITIONS: CompetitionItem[] = [
   { title: "Студенческий стартап", org: "ФСИ", deadline: "01.04.2026", amount: "1 млн ₽", desc: "Грант для студентов вузов на технологические проекты.", url: "https://drive.google.com/file/d/1w4hbPcyOEBgJlZyMZ3guBbLbJmcPzhB0/view?usp=sharing" },
   { title: "УМНИК", org: "ФСИ", deadline: "15.03.2026", amount: "до 1 млн ₽", desc: "Поддержка молодых учёных и инноваторов до 30 лет.", url: "https://drive.google.com/file/d/1DeP_OPp72TP4fYXnWhDFtxqRSg3M2Rdt/view?usp=sharing" },
   { title: "Цифровой прорыв", org: "АНО «Россия — страна возможностей»", deadline: "01.05.2026", amount: "до 500 тыс ₽", desc: "Хакатон для IT-специалистов и разработчиков.", url: "https://i.digitalproryv.ru" },
-  { title: "Я — профессионал", org: "Яндекс / НИУ ВШЭ", deadline: "01.03.2026", amount: "стажировка + 200 тыс ₽", desc: "Многопрофильная олимпиада для студентов.", url: "https://yandex.ru/profi" },
 ];
 
 export const ACCELERATORS: AcceleratorItem[] = [
@@ -57,10 +56,7 @@ export const STIPENDS: StipendItem[] = [
   { title: "Стипендия Правительства РФ", amount: "14 400 ₽/мес", req: "Приоритетные специальности", deadline: "01.11.2026" },
 ];
 
-export const SCIENCE_EVENTS: ScienceEventItem[] = [
-  { title: "Всероссийская конференция AgriTech", date: "2026-05-20", description: "Научно-практическая конференция по агротехнологиям." },
-  { title: "Форум молодых учёных ОмГАУ", date: "2026-04-15", description: "Ежегодный форум для студентов и аспирантов." },
-];
+export const SCIENCE_EVENTS: ScienceEventItem[] = [];
 
 // ─── Helper: convert dd.mm.yyyy → yyyy-mm-dd ──────────────────────────────────
 const toISODate = (d: string) => {
@@ -78,13 +74,7 @@ export const EVENTS: CalendarEvent[] = [
     deadline: toISODate(c.deadline),
     description: `${c.desc}${c.amount ? " Размер: " + c.amount : ""}`,
   })),
-  ...ACCELERATORS.filter(a => a.startDate).map((a, i) => ({
-    id: 200 + i,
-    title: a.title,
-    date: a.startDate!,
-    type: "event" as EventType,
-    description: `${a.desc} Формат: ${a.format}. Длительность: ${a.duration}.`,
-  })),
+
   ...STIPENDS.filter(s => s.deadline).map((s, i) => ({
     id: 300 + i,
     title: s.title,
