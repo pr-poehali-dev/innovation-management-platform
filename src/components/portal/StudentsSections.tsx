@@ -125,7 +125,7 @@ export function StudentsSection({ navigate, goHome, goBack, studentsTab, setStud
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
       <NavButtons onHome={goHome} onBack={goBack} />
-      <h1 className="font-merriweather font-bold text-3xl text-deep mb-6">Студентам</h1>
+      <h1 className="font-merriweather font-bold text-3xl text-deep mb-6">Конкурсы</h1>
       <div className="flex gap-2 flex-wrap mb-8 border-b border-border pb-4">
         {tabs.map(t => (
           <button key={t.key} onClick={() => setStudentsTab(t.key)}
