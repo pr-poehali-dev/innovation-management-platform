@@ -197,14 +197,14 @@ export function NewsDetailSection({ goHome, goBack, selectedNews }: NewsDetailSe
   return (
     <div className="max-w-3xl mx-auto px-6 py-10">
       <NavButtons onHome={goHome} onBack={goBack} />
+      {selectedNews.image && (
+        <img src={selectedNews.image} alt="" className="w-full rounded-xl border border-border mb-6 object-contain" />
+      )}
       <div className="flex items-center gap-3 mb-4">
         <span className="text-xs bg-teal-50 text-primary px-2.5 py-1 rounded-full font-medium">{selectedNews.tag}</span>
         <span className="text-xs text-muted-foreground">{selectedNews.date}</span>
       </div>
       <h1 className="font-merriweather font-bold text-2xl text-deep mb-6">{selectedNews.title}</h1>
-      {selectedNews.image && (
-        <img src={selectedNews.image} alt="" className="w-full rounded-xl border border-border mb-6 object-contain" />
-      )}
       <div className="space-y-4">
         {paragraphs.map((para, i) => {
           if (para.startsWith("•") || para.includes("\n•")) {
