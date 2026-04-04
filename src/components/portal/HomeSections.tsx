@@ -7,7 +7,7 @@ import { Section, EventType, CalendarEvent, GrantItem, NewsItem, EVENTS, NEWS, V
 interface NavProps { navigate: (s: Section) => void; goHome: () => void; goBack: () => void; }
 
 // ─── HomeSection ──────────────────────────────────────────────────────────────
-export function HomeSection({ navigate }: { navigate: (s: Section) => void }) {
+export function HomeSection({ navigate, setSelectedNews }: { navigate: (s: Section) => void; setSelectedNews: (n: NewsItem) => void }) {
   return (
     <div>
       <section className="bg-gradient-to-br from-teal-dark via-teal to-teal-light text-white py-20 px-6 md:px-12 relative overflow-hidden">
@@ -89,11 +89,16 @@ export function HomeSection({ navigate }: { navigate: (s: Section) => void }) {
           </div>
           <div className="grid md:grid-cols-3 gap-4">
             {[...NEWS].sort((a, b) => b.id - a.id).slice(0, 3).map(n => (
-              <div key={n.id} className="bg-card rounded-xl border border-border p-5 hover:shadow-md transition-shadow">
+              <div key={n.id}
+                onClick={() => { if (n.fullText) { setSelectedNews(n); navigate("news-detail"); } else navigate("news"); }}
+                className="bg-card rounded-xl border border-border p-5 hover:shadow-md transition-shadow cursor-pointer">
                 <span className="text-xs bg-teal-50 text-primary px-2 py-0.5 rounded-full font-medium">{n.tag}</span>
                 <h3 className="font-semibold text-sm text-deep mt-2 mb-1 leading-snug">{n.title}</h3>
                 <p className="text-xs text-muted-foreground line-clamp-2">{n.text}</p>
-                <div className="text-xs text-muted-foreground mt-3">{n.date}</div>
+                <div className="text-xs text-muted-foreground mt-3 flex items-center justify-between">
+                  <span>{n.date}</span>
+                  <span className="text-primary flex items-center gap-0.5 text-xs">Читать <Icon name="ArrowRight" size={11} /></span>
+                </div>
               </div>
             ))}
           </div>

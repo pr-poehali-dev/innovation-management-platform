@@ -61,7 +61,7 @@ export default function Index() {
   const renderSection = () => {
     const navProps = { navigate, goHome, goBack };
     switch (section) {
-      case "home":        return <HomeSection navigate={navigate} />;
+      case "home":        return <HomeSection navigate={navigate} setSelectedNews={setSelectedNews} />;
       case "about":       return <AboutSection {...navProps} />;
       case "news":        return <NewsSection {...navProps} setSelectedNews={setSelectedNews} />;
       case "news-detail": return <NewsDetailSection {...navProps} selectedNews={selectedNews} />;
