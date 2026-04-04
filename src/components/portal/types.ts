@@ -52,6 +52,7 @@ export const ACCELERATORS: AcceleratorItem[] = [
 export const STIPENDS: StipendItem[] = [
   { title: "Стипендия Президента РФ", amount: "22 800 ₽/мес", req: "Достижения в науке и спорте", deadline: "01.10.2026" },
   { title: "Стипендия Правительства РФ", amount: "14 400 ₽/мес", req: "Приоритетные специальности", deadline: "01.11.2026" },
+  { title: "Стипендия РоссельхозБанк", amount: "", req: "", deadline: "" },
 ];
 
 export const SCIENCE_EVENTS: ScienceEventItem[] = [];
