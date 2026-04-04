@@ -11,11 +11,12 @@ function GrantsTab({ activeGrants, archiveGrants, grantYearFilter, setGrantYearF
   navigate: (s: Section) => void;
 }) {
   const [archiveProgram, setArchiveProgram] = useState<"УМНИК" | "Студенческий стартап">("УМНИК");
+  const [selectedArchiveYear, setSelectedArchiveYear] = useState<number | null>(null);
   const archiveYears = [...new Set(archiveGrants.filter(g => g.title === archiveProgram).map(g => g.year))].sort((a, b) => b - a);
-  const selectedYear = archiveYears.includes(grantYearFilter as number) ? grantYearFilter : archiveYears[0];
+  const activeYear = selectedArchiveYear !== null && archiveYears.includes(selectedArchiveYear) ? selectedArchiveYear : null;
   const filteredArchive = archiveGrants
     .filter(g => g.title === archiveProgram)
-    .filter(g => selectedYear === "all" || g.year === selectedYear);
+    .filter(g => activeYear === null || g.year === activeYear);
 
   return (
     <div className="space-y-4">
@@ -60,8 +61,8 @@ function GrantsTab({ activeGrants, archiveGrants, grantYearFilter, setGrantYearF
         </div>
         <div className="flex gap-2 flex-wrap mb-4">
           {archiveYears.map(y => (
-            <button key={y} onClick={() => setGrantYearFilter(y)}
-              className={`px-3 py-1 rounded text-xs transition-colors ${grantYearFilter === y ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-secondary"}`}>
+            <button key={y} onClick={() => setSelectedArchiveYear(activeYear === y ? null : y)}
+              className={`px-3 py-1 rounded text-xs transition-colors ${activeYear === y ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-secondary"}`}>
               {y}
             </button>
           ))}
