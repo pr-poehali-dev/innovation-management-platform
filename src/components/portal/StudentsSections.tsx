@@ -171,10 +171,16 @@ export function StudentsSection({ navigate, goHome, goBack, studentsTab, setStud
               <div className="w-9 h-9 bg-amber-50 rounded-lg flex items-center justify-center mb-3"><Icon name="Rocket" size={17} className="text-amber-600" /></div>
               <h3 className="font-semibold text-deep mb-1 text-sm">{a.title}</h3>
               <p className="text-xs text-muted-foreground mb-3">{a.desc}</p>
-              <div className="space-y-1 text-xs text-muted-foreground">
+              <div className="space-y-1 text-xs text-muted-foreground mb-3">
                 <div className="flex items-center gap-1.5"><Icon name="Clock" size={11} />{a.duration}</div>
                 <div className="flex items-center gap-1.5"><Icon name="MapPin" size={11} />{a.format}</div>
               </div>
+              {a.url && (
+                <a href={a.url} target="_blank" rel="noopener noreferrer"
+                  className="text-xs bg-primary text-white px-3 py-1.5 rounded-lg hover:bg-primary/90 transition-colors flex items-center gap-1 w-fit">
+                  Перейти <Icon name="ExternalLink" size={10} />
+                </a>
+              )}
             </div>
           ))}
         </div>

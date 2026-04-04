@@ -29,7 +29,7 @@ export interface CompetitionItem {
   title: string; org: string; deadline: string; amount: string; desc: string; url: string;
 }
 export interface AcceleratorItem {
-  title: string; duration: string; format: string; desc: string; startDate?: string;
+  title: string; duration: string; format: string; desc: string; startDate?: string; url?: string;
 }
 export interface StipendItem {
   title: string; amount: string; req: string; deadline?: string;
@@ -49,6 +49,7 @@ export const ACCELERATORS: AcceleratorItem[] = [
   { title: "Акселератор ОмГАУ AgriTech", duration: "12 недель", format: "Очно", desc: "Для агротех стартапов: менторство, финансирование, выход на рынок.", startDate: "2026-09-01" },
   { title: "ФРИИ Акселератор", duration: "10 недель", format: "Онлайн/Офлайн", desc: "Топ акселератор для технологических стартапов в России.", startDate: "2026-10-01" },
   { title: "Сколково Акселератор", duration: "6 месяцев", format: "Москва + онлайн", desc: "Для стартапов с инновационными технологиями.", startDate: "2026-11-01" },
+  { title: "Агентство стратегических инициатив (АСИ)", duration: "Различные программы", format: "Онлайн/Офлайн", desc: "Поддержка инновационных проектов и стартапов на федеральном уровне.", url: "https://asi.ru/" },
 ];
 
 export const STIPENDS: StipendItem[] = [
