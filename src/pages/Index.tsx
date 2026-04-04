@@ -11,8 +11,44 @@ import {
   ContactsSection, PartnersSection, LoginSection,
 } from "@/components/portal/ContentSections";
 
+// ─── Access Gate ──────────────────────────────────────────────────────────────
+const ACCESS_KEY = "omgau2026";
+
+function AccessGate({ onUnlock }: { onUnlock: () => void }) {
+  const [input, setInput] = useState("");
+  const [error, setError] = useState(false);
+  const check = () => {
+    if (input.trim() === ACCESS_KEY) { onUnlock(); }
+    else { setError(true); setTimeout(() => setError(false), 2000); }
+  };
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-teal-dark via-teal to-teal-light flex items-center justify-center px-4">
+      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm text-center">
+        <div className="w-16 h-16 bg-teal-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <Icon name="Lock" size={28} className="text-primary" />
+        </div>
+        <h1 className="font-merriweather font-bold text-xl text-deep mb-1">Сайт находится в разработке</h1>
+        <p className="text-sm text-muted-foreground mb-6">Введите код доступа для просмотра</p>
+        <input
+          type="password"
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={e => e.key === "Enter" && check()}
+          placeholder="Код доступа"
+          className={`w-full border rounded-xl px-4 py-2.5 text-sm outline-none mb-3 transition-colors ${error ? "border-red-400 bg-red-50" : "border-border focus:border-primary"}`}
+        />
+        {error && <p className="text-xs text-red-500 mb-3">Неверный код</p>}
+        <button onClick={check} className="w-full bg-primary text-white py-2.5 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+          Войти
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // ─── Main App ─────────────────────────────────────────────────────────────────
 export default function Index() {
+  const [unlocked, setUnlocked] = useState(() => sessionStorage.getItem("site_access") === "1");
   const [section, setSection] = useState<Section>("home");
   const [prevSection, setPrevSection] = useState<Section>("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -56,6 +92,8 @@ export default function Index() {
   const filteredVictories = VICTORIES.filter(v => victoriesFilter === "all" || v.type === victoriesFilter);
   const activeGrants = GRANTS.filter(g => g.active);
   const archiveGrants = GRANTS.filter(g => !g.active && (grantYearFilter === "all" || g.year === grantYearFilter));
+
+  if (!unlocked) return <AccessGate onUnlock={() => { sessionStorage.setItem("site_access", "1"); setUnlocked(true); }} />;
 
   // ─── Render ─────────────────────────────────────────────────────────────────
   const renderSection = () => {
