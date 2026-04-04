@@ -202,12 +202,8 @@ export function NewsDetailSection({ goHome, goBack, selectedNews }: NewsDetailSe
         <span className="text-xs text-muted-foreground">{selectedNews.date}</span>
       </div>
       <h1 className="font-merriweather font-bold text-2xl text-deep mb-6">{selectedNews.title}</h1>
-      {selectedNews.images && selectedNews.images.length > 0 && (
-        <div className="flex flex-wrap gap-3 mb-6">
-          {selectedNews.images.map((src, i) => (
-            <img key={i} src={src} alt="" className="rounded-xl border border-border max-h-24 object-contain" />
-          ))}
-        </div>
+      {selectedNews.image && (
+        <img src={selectedNews.image} alt="" className="w-full rounded-xl border border-border mb-6 object-contain" />
       )}
       <div className="space-y-4">
         {paragraphs.map((para, i) => {
@@ -224,10 +220,20 @@ export function NewsDetailSection({ goHome, goBack, selectedNews }: NewsDetailSe
               </ul>
             );
           }
+          const colonIdx = para.indexOf(":");
+          if (colonIdx > 0 && colonIdx < 40 && !para.startsWith("⚡")) {
+            const label = para.slice(0, colonIdx);
+            const rest = para.slice(colonIdx + 1);
+            return (
+              <p key={i} className="text-sm text-foreground leading-relaxed">
+                <span className="font-semibold text-deep">{label}:</span>{rest}
+              </p>
+            );
+          }
           return <p key={i} className="text-sm text-foreground leading-relaxed whitespace-pre-line">{para}</p>;
         })}
       </div>
-      {(selectedNews.link || selectedNews.image) && (
+      {(selectedNews.link || selectedNews.images) && (
         <div className="flex items-center gap-4 mt-8">
           {selectedNews.link && (
             <a
@@ -239,9 +245,9 @@ export function NewsDetailSection({ goHome, goBack, selectedNews }: NewsDetailSe
               Подробнее о конкурсе <Icon name="ExternalLink" size={14} />
             </a>
           )}
-          {selectedNews.image && (
-            <img src={selectedNews.image} alt="QR-код" className="w-16 h-16 rounded-lg border border-border" />
-          )}
+          {selectedNews.images && selectedNews.images.map((src, i) => (
+            <img key={i} src={src} alt="QR-код" className="w-16 h-16 rounded-lg border border-border object-contain" />
+          ))}
         </div>
       )}
     </div>
