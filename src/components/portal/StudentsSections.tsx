@@ -1,8 +1,98 @@
+import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import { NavButtons, Breadcrumb } from "./LayoutComponents";
 import { Section, GrantItem, COMPETITIONS, ACCELERATORS, STIPENDS, SCIENCE_EVENTS } from "./types";
 
 interface NavProps { navigate: (s: Section) => void; goHome: () => void; goBack: () => void; }
+
+function GrantsTab({ activeGrants, archiveGrants, grantYearFilter, setGrantYearFilter, setSelectedGrant, navigate }: {
+  activeGrants: GrantItem[]; archiveGrants: GrantItem[]; grantYearFilter: number | "all";
+  setGrantYearFilter: (v: number | "all") => void; setSelectedGrant: (g: GrantItem) => void;
+  navigate: (s: Section) => void;
+}) {
+  const [archiveProgram, setArchiveProgram] = useState<"all" | "УМНИК" | "Студенческий стартап">("all");
+  const archiveYears = [...new Set(archiveGrants.map(g => g.year))].sort((a, b) => b - a);
+  const filteredArchive = archiveGrants
+    .filter(g => grantYearFilter === "all" || g.year === grantYearFilter)
+    .filter(g => archiveProgram === "all" || g.title === archiveProgram);
+
+  return (
+    <div className="space-y-4">
+      <h3 className="font-merriweather font-bold text-deep">Актуальные темы заявок</h3>
+      {activeGrants.map(g => (
+        <div key={g.id} className="bg-card border border-border rounded-xl p-5 hover:shadow-md transition-shadow cursor-pointer"
+          onClick={() => { setSelectedGrant(g); navigate("grant-detail"); }}>
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex-1">
+              <h4 className="font-merriweather font-bold text-deep">{g.title}</h4>
+              <p className="text-sm text-muted-foreground">{g.fund}</p>
+              <p className="text-sm mt-1.5">{g.description}</p>
+              {g.topics && g.topics.length > 0 && (
+                <div className="mt-3 space-y-1.5">
+                  {g.topics.map((t, i) => (
+                    <div key={i} className="bg-muted rounded-lg px-3 py-2">
+                      <p className="text-xs font-medium text-deep">{t.topic}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1"><Icon name="User" size={10} />{t.supervisor}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="text-right flex-shrink-0">
+              <div className="font-bold text-primary">{g.amount}</div>
+              <div className="text-xs text-muted-foreground mt-0.5">до {g.deadline.split("-").reverse().join(".")}</div>
+              <span className="inline-block mt-1 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Активный</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-1 mt-3 text-xs text-primary"><span>Подробнее</span><Icon name="ArrowRight" size={11} /></div>
+        </div>
+      ))}
+      <div className="mt-8 pt-6 border-t border-border">
+        <h3 className="font-merriweather font-bold text-deep mb-4 flex items-center gap-2"><Icon name="Archive" size={17} className="text-muted-foreground" />Архив тем заявок</h3>
+        <div className="flex gap-2 flex-wrap mb-3">
+          {(["all", "УМНИК", "Студенческий стартап"] as const).map(p => (
+            <button key={p} onClick={() => setArchiveProgram(p)}
+              className={`px-3 py-1 rounded text-xs font-medium transition-colors ${archiveProgram === p ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-secondary"}`}>
+              {p === "all" ? "Все программы" : p}
+            </button>
+          ))}
+        </div>
+        <div className="flex gap-2 flex-wrap mb-4">
+          {(["all", ...archiveYears] as const).map(y => (
+            <button key={y} onClick={() => setGrantYearFilter(y as number | "all")}
+              className={`px-3 py-1 rounded text-xs transition-colors ${grantYearFilter === y ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-secondary"}`}>
+              {y === "all" ? "Все годы" : y}
+            </button>
+          ))}
+        </div>
+        <div className="space-y-3">
+          {filteredArchive.map(g => (
+            <div key={g.id} className="bg-muted rounded-xl px-4 py-3">
+              <div className="flex items-center gap-2 mb-2">
+                <Icon name="Archive" size={13} className="text-muted-foreground flex-shrink-0" />
+                <span className="font-semibold text-deep text-sm">{g.title}</span>
+                <span className="text-muted-foreground text-xs ml-auto">{g.year} · {g.amount}</span>
+              </div>
+              {g.topics && g.topics.length > 0 && (
+                <div className="space-y-1 pl-5">
+                  {g.topics.map((t, i) => (
+                    <div key={i} className="text-xs">
+                      <span className="text-deep">{t.topic}</span>
+                      <span className="text-muted-foreground ml-2">— {t.supervisor}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+          {filteredArchive.length === 0 && (
+            <p className="text-sm text-muted-foreground text-center py-4">Нет записей за выбранный период</p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 interface StudentsSectionProps extends NavProps {
   studentsTab: "competitions" | "grants" | "accelerators" | "stipends" | "science";
@@ -69,49 +159,7 @@ export function StudentsSection({ navigate, goHome, goBack, studentsTab, setStud
       )}
 
       {studentsTab === "grants" && (
-        <div className="space-y-4">
-          <h3 className="font-merriweather font-bold text-deep">Актуальные гранты</h3>
-          {activeGrants.map(g => (
-            <div key={g.id} className="bg-card border border-border rounded-xl p-5 hover:shadow-md transition-shadow cursor-pointer"
-              onClick={() => { setSelectedGrant(g); navigate("grant-detail"); }}>
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1">
-                  <h4 className="font-merriweather font-bold text-deep">{g.title}</h4>
-                  <p className="text-sm text-muted-foreground">{g.fund}</p>
-                  <p className="text-sm mt-1.5">{g.description}</p>
-                </div>
-                <div className="text-right flex-shrink-0">
-                  <div className="font-bold text-primary">{g.amount}</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">до {g.deadline.split("-").reverse().join(".")}</div>
-                  <span className="inline-block mt-1 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Активный</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-1 mt-3 text-xs text-primary"><span>Подробнее</span><Icon name="ArrowRight" size={11} /></div>
-            </div>
-          ))}
-          <div className="mt-8 pt-6 border-t border-border">
-            <h3 className="font-merriweather font-bold text-deep mb-4 flex items-center gap-2"><Icon name="Archive" size={17} className="text-muted-foreground" />Архив тем заявок</h3>
-            <div className="flex gap-2 flex-wrap mb-3">
-              {(["all", 2025, 2024, 2023] as const).map(y => (
-                <button key={y} onClick={() => setGrantYearFilter(y)}
-                  className={`px-3 py-1 rounded text-xs transition-colors ${grantYearFilter === y ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-secondary"}`}>
-                  {y === "all" ? "Все годы" : y}
-                </button>
-              ))}
-            </div>
-            <div className="space-y-2">
-              {archiveGrants.map(g => (
-                <div key={g.id} className="flex items-center gap-3 bg-muted rounded-lg px-4 py-2.5 text-sm">
-                  <Icon name="Archive" size={13} className="text-muted-foreground flex-shrink-0" />
-                  <span className="flex-1 font-medium text-deep">{g.title}</span>
-                  <span className="text-muted-foreground text-xs hidden sm:block">{g.fund}</span>
-                  <span className="text-muted-foreground text-xs">{g.amount}</span>
-                  <span className="text-muted-foreground text-xs">{g.year}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <GrantsTab activeGrants={activeGrants} archiveGrants={archiveGrants} grantYearFilter={grantYearFilter} setGrantYearFilter={setGrantYearFilter} setSelectedGrant={setSelectedGrant} navigate={navigate} />
       )}
 
       {studentsTab === "accelerators" && (
@@ -210,6 +258,19 @@ export function GrantDetailSection({ navigate, goHome, goBack, selectedGrant, ha
               ))}
             </ul>
           </div>
+          {selectedGrant.topics && selectedGrant.topics.length > 0 && (
+            <div>
+              <h3 className="font-merriweather font-bold text-deep mb-3">Темы заявок</h3>
+              <div className="space-y-2">
+                {selectedGrant.topics.map((t, i) => (
+                  <div key={i} className="bg-muted rounded-lg px-4 py-3">
+                    <p className="text-sm font-medium text-deep">{i + 1}. {t.topic}</p>
+                    <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1.5"><Icon name="User" size={11} />Руководитель: {t.supervisor}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
           {selectedGrant.active && (
             <button onClick={handleQuestion}
               className="w-full bg-gold text-deep py-3 rounded-xl font-semibold hover:bg-gold/90 transition-colors flex items-center justify-center gap-2">
