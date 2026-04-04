@@ -35,7 +35,7 @@ export interface StipendItem {
   title: string; amount: string; req: string; deadline?: string;
 }
 export interface ScienceEventItem {
-  title: string; date: string; description: string;
+  title: string; date: string; description: string; location?: string;
 }
 
 export const COMPETITIONS: CompetitionItem[] = [
@@ -55,7 +55,14 @@ export const STIPENDS: StipendItem[] = [
   { title: "Стипендия РоссельхозБанк", amount: "", req: "", deadline: "" },
 ];
 
-export const SCIENCE_EVENTS: ScienceEventItem[] = [];
+export const SCIENCE_EVENTS: ScienceEventItem[] = [
+  {
+    title: "I ежегодный форум студенческих стартапов «TED-style «Будущее глазами молодых предпринимателей»",
+    date: "2026-02-25",
+    description: "В рамках Дня российской науки. Начало в 14:30.",
+    location: "Конференц-зал, главный корпус НСХБ, 1-й этаж, аудитория №146. г. Омск, ул. Горная, 9/1",
+  },
+];
 
 // ─── Helper: convert dd.mm.yyyy → yyyy-mm-dd ──────────────────────────────────
 const toISODate = (d: string) => {

@@ -206,7 +206,15 @@ export function StudentsSection({ navigate, goHome, goBack, studentsTab, setStud
           {SCIENCE_EVENTS.map((e, i) => (
             <div key={i} className="bg-card border border-border rounded-xl p-5 hover:shadow-sm transition-shadow">
               <div className="flex items-start justify-between gap-4">
-                <div><h3 className="font-semibold text-deep text-sm">{e.title}</h3><p className="text-sm text-muted-foreground mt-1">{e.description}</p></div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-deep text-sm">{e.title}</h3>
+                  <p className="text-sm text-muted-foreground mt-1">{e.description}</p>
+                  {e.location && (
+                    <p className="text-xs text-muted-foreground mt-1.5 flex items-start gap-1.5">
+                      <Icon name="MapPin" size={11} className="flex-shrink-0 mt-0.5" />{e.location}
+                    </p>
+                  )}
+                </div>
                 <div className="text-xs text-muted-foreground flex-shrink-0">{e.date.split("-").reverse().join(".")}</div>
               </div>
             </div>
