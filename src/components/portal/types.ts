@@ -189,7 +189,7 @@ export const PARTNERS = [
 ];
 
 // ─── Utilities ────────────────────────────────────────────────────────────────
-export const typeLabel = (t: EventType) => ({ competition: "Конкурс", grant: "Грант", event: "Мероприятие" }[t]);
+export const typeLabel = (t: EventType) => ({ competition: "Конкурс", grant: "Стипендия", event: "Мероприятие" }[t]);
 export const typeBadgeColor = (t: EventType) => ({ competition: "bg-blue-100 text-blue-700", grant: "bg-teal-100 text-teal-700", event: "bg-amber-100 text-amber-700" }[t]);
 
 // ─── Shared UI helpers ────────────────────────────────────────────────────────
