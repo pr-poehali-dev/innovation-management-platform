@@ -37,7 +37,7 @@ export function HomeSection({ navigate, setSelectedNews }: { navigate: (s: Secti
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 flex-1">
             {[
-              { value: "34 ед.", label: "Заявок подано на инновационные конкурсы", icon: "FileText" },
+              { value: "34 ед.", label: "Заявок подано на\nинновационные конкурсы", icon: "FileText" },
               { value: "5 чел.", label: "Победителей конкурсов", icon: "Trophy" },
               { value: "5 млн.", label: "Конкурсное финансирование", icon: "Banknote" },
               { value: "5 ед.", label: "Научные мероприятия", icon: "Rocket" },
@@ -47,7 +47,7 @@ export function HomeSection({ navigate, setSelectedNews }: { navigate: (s: Secti
                   <Icon name={s.icon} size={18} className="text-primary" />
                 </div>
                 <div className="font-merriweather font-bold text-2xl text-deep">{s.value}</div>
-                <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
+                <div className={`text-muted-foreground mt-0.5 whitespace-pre-line ${i === 0 ? "text-sm leading-snug" : "text-xs"}`}>{s.label}</div>
               </div>
             ))}
           </div>
