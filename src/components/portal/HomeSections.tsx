@@ -236,7 +236,7 @@ export function NewsDetailSection({ goHome, goBack, selectedNews }: NewsDetailSe
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-primary/90 transition-colors"
             >
-              Подробности на сайте фонда <Icon name="ExternalLink" size={14} />
+              Подробнее о конкурсе <Icon name="ExternalLink" size={14} />
             </a>
           )}
           {selectedNews.image && (
